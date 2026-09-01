@@ -1,1 +1,516 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>XGBoost Decision-Tree Inference Engine | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">ML HARDWARE · RTL</p><h1>XGBoost Decision-Tree Inference Engine</h1><p>A hardware inference engine for XGBoost decision-tree models, implementing fixed-point tree traversal and score accumulation with Python-based golden-model verification.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>IIIT Bangalore</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Verilog</span><span>XGBoost</span><span>Fixed-Point</span><span>FPGA</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A hardware inference engine for XGBoost decision-tree models, implementing fixed-point tree traversal and score accumulation with Python-based golden-model verification.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="XGBoost Decision-Tree Inference Engine — Adhiraj Mandal.">
+    <title>XGBoost Decision-Tree Inference Engine | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+<section class="detail-hero">
+    <p class="detail-kicker">ML HARDWARE · FPGA · RTL · COMPUTER ARCHITECTURE</p>
+    <h1>XGBoost Decision-Tree <span style="color:var(--accent)">Inference Engine.</span></h1>
+    <p>
+        A synthesizable Verilog RTL accelerator that maps a trained XGBoost classification
+        model into dedicated FPGA-oriented hardware, with fixed-point inference, tree
+        traversal, score aggregation, and a latency-focused parallel architecture.
+    </p>
+    <div class="detail-hero-meta">
+        <span>IIIT Bangalore</span>
+        <span>774 Decision Trees</span>
+        <span>144 Features</span>
+        <span>3 Classes</span>
+    </div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+    <div class="detail-grid">
+        <aside class="detail-sidebar">
+            <div><span>PROJECT TYPE</span><strong>AI Hardware / FPGA Accelerator</strong></div>
+            <div><span>MODEL</span><strong>XGBoost Classification</strong></div>
+            <div><span>FIXED-POINT</span><strong>Q22.14</strong></div>
+            <div><span>BASELINE</span><strong>~3,875 cycles / inference</strong></div>
+            <div><span>STATUS</span><strong>Verified baseline · optimization phase</strong></div>
+        </aside>
+        <article class="detail-body">
+            <div class="metric-callout-grid">
+                <div class="metric-callout"><strong>774</strong><span>DECISION TREES</span></div>
+                <div class="metric-callout"><strong>144</strong><span>INPUT FEATURES</span></div>
+                <div class="metric-callout"><strong>20/20</strong><span>BASELINE TEST VECTORS</span></div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>From XGBoost Model to RTL Hardware</h2>
+                <p>
+                    This project implements hardware inference for a trained XGBoost classification
+                    model using synthesizable Verilog RTL. Instead of executing the model entirely
+                    in software, the decision-tree inference process is mapped onto dedicated
+                    digital hardware.
+                </p>
+                <p>
+                    The accelerator accepts a quantized feature vector, traverses the trained
+                    ensemble, accumulates class scores, applies bias and fixed-point saturation,
+                    and selects the final prediction through an Argmax unit.
+                </p>
+            </section>
+
+            <section>
+                <h2>The Architecture Story</h2>
+                <p>
+                    The project has two architectural stages. A sequential implementation was
+                    first developed and functionally verified, establishing an approximately
+                    <strong>3,875-cycle per-inference baseline</strong>. The architecture was
+                    then redesigned to exploit tree-level parallelism and pipelined traversal,
+                    making latency the primary optimization target while explicitly exposing
+                    the resulting hardware-resource trade-off.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>02</span><strong>MODEL MAPPING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Model Configuration</h2>
+                <div class="metric-callout-grid">
+                    <div class="metric-callout"><strong>774</strong><span>TREES</span></div>
+                    <div class="metric-callout"><strong>144</strong><span>FEATURES</span></div>
+                    <div class="metric-callout"><strong>3</strong><span>OUTPUT CLASSES</span></div>
+                </div>
+                <div class="large-tags">
+                    <span>Depth-3 Trees</span><span>11,610 Stored Nodes</span>
+                    <span>Q22.14 Fixed-Point</span><span>20 Verification Vectors</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Decision-Tree Inference</h2>
+                <div class="flow-diagram">
+                    <div>144-Dimensional Feature Vector</div><i>↓</i>
+                    <div>Feature Storage</div><i>↓</i>
+                    <div>Read Current Tree Node</div><i>↓</i>
+                    <div>Feature / Threshold Comparison</div><i>↓</i>
+                    <div>Left / Right Child Selection</div><i>↓</i>
+                    <div>Repeat Until Leaf</div><i>↓</i>
+                    <div>Leaf Prediction</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>03</span><strong>RTL ARCHITECTURE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Hardware Datapath</h2>
+                <div class="architecture-stack">
+                    <div>Feature Register File</div><i>↓</i>
+                    <div>Tree / Node Memory</div><i>↓</i>
+                    <div class="accent-box">Tree Evaluator</div><i>↓</i>
+                    <div>Class Score Accumulation</div><i>↓</i>
+                    <div>Bias Addition</div><i>↓</i>
+                    <div>Saturation</div><i>↓</i>
+                    <div>Argmax</div><i>↓</i>
+                    <div>Predicted Class</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Feature Register File</h2>
+                <p>
+                    The complete 144-feature input vector is held locally so that tree
+                    evaluators can access the feature selected by each decision node during
+                    inference.
+                </p>
+            </section>
+
+            <section>
+                <h2>Model Memory</h2>
+                <p>
+                    The trained XGBoost model is converted into hardware-readable memory
+                    initialization files. Node information includes the leaf indicator,
+                    feature index, and threshold or leaf value required to reconstruct
+                    decision-tree traversal in hardware.
+                </p>
+            </section>
+
+            <section>
+                <h2>Tree Evaluator</h2>
+                <p>
+                    At each decision node, the evaluator compares the selected feature with
+                    the stored threshold. The result selects the left or right child, and
+                    traversal continues until a leaf is reached.
+                </p>
+                <div class="equation-box centered-equation">
+                    <code>Feature &lt; Threshold ? → LEFT : RIGHT</code>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>04</span><strong>PARALLEL ARCHITECTURE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Sequential Baseline</h2>
+                <p>
+                    The first implementation reused a single tree-evaluation path and processed
+                    one tree after another across the 774-tree ensemble.
+                </p>
+                <div class="state-flow">
+                    <span>TREE 0</span><i>→</i><span>TREE 1</span><i>→</i>
+                    <span>TREE 2</span><i>→</i><span>…</span><i>→</i><span>TREE 773</span>
+                </div>
+                <div class="metric-callout-grid" style="margin-top:25px">
+                    <div class="metric-callout"><strong>~3,875</strong><span>CYCLES / INFERENCE</span></div>
+                    <div class="metric-callout"><strong>1×</strong><span>REUSED TREE PATH</span></div>
+                    <div class="metric-callout"><strong>BASELINE</strong><span>FOR OPTIMIZATION</span></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>774-Way Tree-Level Parallelism</h2>
+                <p>
+                    The optimized architecture replaces sequential tree reuse with a parallel
+                    array of tree evaluation paths so that all 774 trees can participate in
+                    inference simultaneously.
+                </p>
+                <div class="architecture-stack">
+                    <div>Shared Input Feature Vector</div><i>↓</i>
+                    <div class="accent-box">774 Parallel Tree Evaluators</div><i>↓</i>
+                    <div>Parallel Class Contributions</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Pipelined Tree Traversal</h2>
+                <p>
+                    Because the trees have depth 3, traversal can be organized across multiple
+                    stages, with registers separating levels of the decision path.
+                </p>
+                <div class="state-flow">
+                    <span>ROOT</span><i>→</i><span>LEVEL 1</span><i>→</i>
+                    <span>LEVEL 2</span><i>→</i><span>LEAF</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>05</span><strong>SCORE AGGREGATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Parallel Score Reduction</h2>
+                <p>
+                    Each tree contributes to one of the three output-class scores. The optimized
+                    architecture combines these contributions through a parallel reduction
+                    structure rather than relying on one long serial addition chain.
+                </p>
+                <div class="flow-diagram">
+                    <div>Tree Contributions</div><i>↓</i>
+                    <div>Pairwise Partial Sums</div><i>↓</i>
+                    <div>Higher-Level Reductions</div><i>↓</i>
+                    <div>Final Class Scores</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Three-Class Score Paths</h2>
+                <div class="feature-list">
+                    <div><strong>Class 0</strong><p>Accumulated contribution from trees assigned to class 0.</p></div>
+                    <div><strong>Class 1</strong><p>Accumulated contribution from trees assigned to class 1.</p></div>
+                    <div><strong>Class 2</strong><p>Accumulated contribution from trees assigned to class 2.</p></div>
+                    <div><strong>Final Argmax</strong><p>The maximum final class score determines the prediction.</p></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Bias + Saturation + Argmax</h2>
+                <div class="equation-box">
+                    <code>Class Score = Tree Score + Bias</code>
+                    <code>Wide Internal Score → Saturation → Output Score</code>
+                    <code>Prediction = argmax(Score0, Score1, Score2)</code>
+                </div>
+                <p>
+                    Saturation prevents signed fixed-point overflow from wrapping around, while
+                    Argmax converts the three final class scores into the predicted class.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>06</span><strong>FIXED-POINT DESIGN</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Q22.14 Representation</h2>
+                <p>
+                    The accelerator uses Q22.14 fixed-point representation for model and score
+                    arithmetic. Fixed-point computation provides deterministic numerical behavior
+                    while avoiding the hardware cost of a floating-point datapath.
+                </p>
+                <div class="large-tags">
+                    <span>Deterministic Arithmetic</span><span>Hardware-Friendly</span>
+                    <span>Fixed Integer Width</span><span>Overflow Protection</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Saturation</h2>
+                <p>
+                    Internal accumulation can use a wider representation than the final output.
+                    The saturation stage range-checks the result and clips values outside the
+                    representable output range instead of allowing wraparound.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>07</span><strong>VERIFICATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Golden-Reference Verification</h2>
+                <p>
+                    The baseline implementation was verified against the supplied reference
+                    results using 20 test vectors. Verification checked the generated class
+                    scores as well as the final predicted class, providing a stronger
+                    correctness check than classification alone.
+                </p>
+                <div class="verification-flow">
+                    <div><span>GOLDEN REFERENCE</span><strong>Expected Scores</strong><p>Known test-vector outputs from the reference model.</p></div>
+                    <div class="verify-arrow">↔</div>
+                    <div><span>RTL IMPLEMENTATION</span><strong>Generated Scores</strong><p>Simulation outputs from the hardware inference engine.</p></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Baseline Result</h2>
+                <div class="metric-callout-grid">
+                    <div class="metric-callout"><strong>20/20</strong><span>TEST VECTORS PASSED</span></div>
+                    <div class="metric-callout"><strong>BIT-ACCURATE</strong><span>CLASS-SCORE MATCHING</span></div>
+                    <div class="metric-callout"><strong>~3,875</strong><span>BASELINE CYCLES</span></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Example Verified Output</h2>
+                <div class="equation-box">
+                    <code>sample 0 → scores: 23442, -28532, -6592 → class 0</code>
+                    <code>sample 1 → scores: -7625, 2387, -6319 → class 1</code>
+                    <code>result → ALL 20 TEST VECTORS PASSED</code>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>08</span><strong>SYNTHESIS & TRADE-OFFS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>FPGA Synthesis</h2>
+                <p>
+                    The RTL is synthesized using AMD/Xilinx Vivado. Synthesis maps the Verilog
+                    architecture into FPGA resources including LUTs, flip-flops, memories,
+                    arithmetic resources, and routing.
+                </p>
+            </section>
+
+            <section>
+                <h2>Why the Optimized Design Costs More</h2>
+                <div class="feature-list">
+                    <div><strong>Sequential</strong><p>Reuses hardware and reduces resource demand, but requires more sequential execution.</p></div>
+                    <div><strong>Parallel</strong><p>Replicates tree evaluators to expose large amounts of concurrency.</p></div>
+                    <div><strong>Pipeline</strong><p>Adds registers between traversal stages to improve temporal throughput.</p></div>
+                    <div><strong>Reduction Tree</strong><p>Uses parallel additions to avoid one long score-accumulation chain.</p></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Optimization Priority</h2>
+                <div class="state-flow">
+                    <span>01 · LATENCY</span><i>→</i><span>02 · RESOURCE UTILIZATION</span>
+                </div>
+                <p>
+                    The current optimization phase prioritizes reducing inference latency first,
+                    then evaluates the additional FPGA resource cost required to achieve it.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>09</span><strong>IMPLEMENTATION FLOW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Machine Learning → Hardware</h2>
+                <div class="pipeline">
+                    <span>XGBoost Model</span><i>→</i>
+                    <span>Model Conversion</span><i>→</i>
+                    <span>Memory Files</span><i>→</i>
+                    <span>Verilog RTL</span><i>→</i>
+                    <span>Simulation</span><i>→</i>
+                    <span>Verification</span><i>→</i>
+                    <span>Vivado Synthesis</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Hardware Modules</h2>
+                <div class="large-tags">
+                    <span>Feature Register File</span>
+                    <span>Tree Evaluator</span>
+                    <span>Tree Array</span>
+                    <span>Node / Model Memory</span>
+                    <span>Parallel Reduction</span>
+                    <span>Saturation</span>
+                    <span>Argmax</span>
+                    <span>Controller</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>10</span><strong>MY CONTRIBUTION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What I Built</h2>
+                <p>
+                    Designed and implemented the RTL inference architecture for a trained
+                    XGBoost ensemble, including feature storage, model-memory representation,
+                    decision-tree traversal, fixed-point score accumulation, saturation,
+                    classification, and the parallel/pipelined optimization strategy.
+                </p>
+                <p>
+                    Developed and used a self-checking verification flow to compare hardware
+                    outputs against golden reference vectors, then used the verified sequential
+                    implementation as the baseline for architecture-level latency optimization.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>11</span><strong>TAKEAWAY</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Trading Hardware for Latency</h2>
+                <div class="pipeline">
+                    <span>774 TREES</span><i>→</i>
+                    <span>PARALLEL EVALUATION</span><i>→</i>
+                    <span>PIPELINED TRAVERSAL</span><i>→</i>
+                    <span>PARALLEL REDUCTION</span><i>→</i>
+                    <span>LOWER LATENCY</span>
+                </div>
+                <p>
+                    The project demonstrates a core accelerator-design principle: machine-learning
+                    inference can be reshaped at the hardware level by changing how computation
+                    is spatially and temporally organized. The key trade-off is between replicated
+                    FPGA resources and inference latency.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>12</span><strong>TECHNOLOGIES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Tools & Concepts</h2>
+                <div class="large-tags">
+                    <span>Verilog HDL</span><span>AMD/Xilinx Vivado</span><span>XSim</span>
+                    <span>Python</span><span>XGBoost</span><span>RTL Design</span>
+                    <span>FPGA Architecture</span><span>Fixed-Point Arithmetic</span>
+                    <span>Decision Trees</span><span>Parallel Architecture</span>
+                    <span>Pipeline Architecture</span><span>Score Reduction</span>
+                    <span>Functional Verification</span><span>Timing Analysis</span>
+                    <span>Resource Utilization</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-resources">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>13</span><strong>RESOURCES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Project Evidence</h2>
+                <p>
+                    Supporting material can be connected here when the final report,
+                    presentation, code repository, and demonstrations are added.
+                    Final parallel-architecture latency, Fmax, and resource measurements
+                    will be inserted after the Vivado analysis is complete.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>PROJECT REPORT</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PROJECT PRESENTATION</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>DEMO / RTL VISUALIZATION</span><strong>Coming soon ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="project-nav">
+    <a href="tinyml-cnn-safety.html">← Previous Project</a>
+    <a href="fpga-cnn-accelerator.html">Next Project →</a>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>

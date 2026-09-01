@@ -1,1 +1,488 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Disease Predictor & Treatment Recommender | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">MACHINE LEARNING</p><h1>Disease Predictor & Treatment Recommender</h1><p>A symptom-based machine-learning system using text vectorization and Random Forest classification to predict diseases and retrieve corresponding treatment information.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>Upflairs Technologies</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Python</span><span>Scikit-learn</span><span>Random Forest</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A symptom-based machine-learning system using text vectorization and Random Forest classification to predict diseases and retrieve corresponding treatment information.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Disease Predictor & Treatment Recommender — Adhiraj Mandal.">
+    <title>Disease Predictor & Treatment Recommender | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+<section class="detail-hero">
+    <p class="detail-kicker">MACHINE LEARNING · NLP · HEALTHCARE AI</p>
+    <h1>Disease Predictor <span style="color:var(--accent)">&amp;</span> Treatment Recommender.</h1>
+    <p>
+        A symptom-based supervised machine-learning application that converts symptom text
+        into numerical features, predicts the most likely disease using a Random Forest
+        classifier, and retrieves corresponding treatment information from the dataset.
+    </p>
+    <div class="detail-hero-meta">
+        <span>Upflairs AI/ML Internship</span>
+        <span>Python</span>
+        <span>Scikit-learn</span>
+        <span>CountVectorizer</span>
+        <span>Random Forest</span>
+    </div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+    <div class="detail-grid">
+        <aside class="detail-sidebar">
+            <div><span>PROJECT TYPE</span><strong>Supervised ML Application</strong></div>
+            <div><span>INPUT</span><strong>Symptom Text</strong></div>
+            <div><span>MODEL</span><strong>RandomForestClassifier · 200 Trees</strong></div>
+            <div><span>FEATURE EXTRACTION</span><strong>CountVectorizer</strong></div>
+            <div><span>MODEL STORAGE</span><strong>Joblib</strong></div>
+        </aside>
+        <article class="detail-body">
+            <div class="metric-callout-grid">
+                <div class="metric-callout"><strong>200</strong><span>RANDOM FOREST TREES</span></div>
+                <div class="metric-callout"><strong>NLP</strong><span>SYMPTOM TEXT FEATURES</span></div>
+                <div class="metric-callout"><strong>ML</strong><span>MULTI-CLASS CLASSIFICATION</span></div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>From Symptoms to Prediction</h2>
+                <p>
+                    The project implements a machine-learning system that accepts a user's
+                    symptoms as text and predicts the most likely disease learned from a
+                    disease–symptom dataset. After prediction, the application retrieves
+                    corresponding treatment information using a disease-to-treatment mapping.
+                </p>
+                <p>
+                    The implementation demonstrates an end-to-end supervised ML workflow:
+                    dataset loading, preprocessing, text feature extraction, label encoding,
+                    model training, persistence, inference, and treatment lookup.
+                </p>
+            </section>
+
+            <section>
+                <h2>End-to-End Pipeline</h2>
+                <div class="pipeline">
+                    <span>DATASET</span><i>→</i>
+                    <span>PREPROCESSING</span><i>→</i>
+                    <span>VECTORIZATION</span><i>→</i>
+                    <span>RANDOM FOREST</span><i>→</i>
+                    <span>SAVED MODEL</span><i>→</i>
+                    <span>USER SYMPTOMS</span><i>→</i>
+                    <span>PREDICTION</span><i>→</i>
+                    <span>TREATMENT LOOKUP</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>02</span><strong>PROBLEM</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Problem Statement</h2>
+                <p>
+                    Disease and symptom datasets contain relationships between symptoms and
+                    diseases, but the raw information is not directly useful to a user who
+                    simply wants to enter a set of symptoms.
+                </p>
+                <p>
+                    The objective was to build a simple ML system that could learn patterns
+                    from symptom descriptions and use new symptom input to predict a disease,
+                    followed by retrieval of the associated treatment information.
+                </p>
+            </section>
+
+            <section>
+                <h2>System at a Glance</h2>
+                <div class="architecture-stack">
+                    <div>User enters comma-separated symptoms</div><i>↓</i>
+                    <div>Text normalization</div><i>↓</i>
+                    <div class="accent-box">CountVectorizer</div><i>↓</i>
+                    <div class="accent-box">Random Forest Classifier</div><i>↓</i>
+                    <div>Predicted disease label</div><i>↓</i>
+                    <div>Disease → Treatment mapping</div><i>↓</i>
+                    <div>Console output</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>03</span><strong>DATASET</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Disease, Symptoms &amp; Treatment Data</h2>
+                <p>
+                    The dataset contains disease-related information including the disease name,
+                    associated symptoms, treatment information, a disease code, contagiousness,
+                    and chronicity.
+                </p>
+                <div class="large-tags">
+                    <span>Name</span><span>Symptoms</span><span>Treatments</span>
+                    <span>Disease_Code</span><span>Contagious</span><span>Chronic</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Features Used by the Implementation</h2>
+                <div class="feature-list">
+                    <div><strong>Symptoms</strong><p>Primary input feature represented as comma-separated symptom text.</p></div>
+                    <div><strong>Disease Name</strong><p>Target variable used for supervised classification.</p></div>
+                    <div><strong>Treatments</strong><p>Used after prediction to retrieve corresponding treatment information.</p></div>
+                    <div><strong>Other Dataset Fields</strong><p>Contagiousness, chronicity and disease code are present in the dataset but are not the primary prediction features in this implementation.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>04</span><strong>PREPROCESSING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Preparing Symptom Text</h2>
+                <p>
+                    The symptom field is standardized before model training. Missing values in
+                    important fields are removed, symptom strings are converted to lowercase,
+                    and comma spacing is normalized so that similar inputs are represented
+                    consistently.
+                </p>
+                <div class="flow-diagram">
+                    <div>Raw Symptom Text</div><i>↓</i>
+                    <div>Remove Missing Critical Rows</div><i>↓</i>
+                    <div>Lowercase</div><i>↓</i>
+                    <div>Normalize Comma Spacing</div><i>↓</i>
+                    <div>Clean Symptom Representation</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Label Encoding</h2>
+                <p>
+                    Disease names are categorical labels, so `LabelEncoder` converts them into
+                    numerical class identifiers for model training. During prediction, the
+                    encoded output is converted back into the corresponding disease name.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>05</span><strong>FEATURE ENGINEERING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>CountVectorizer</h2>
+                <p>
+                    Because the input is textual symptom information, it must be transformed
+                    into numerical features before classification. `CountVectorizer` converts
+                    the symptom text into a numerical representation based on token counts.
+                </p>
+                <div class="equation-box centered-equation">
+                    <code>Symptom Text → Tokens → Count-Based Feature Vector</code>
+                </div>
+            </section>
+
+            <section>
+                <h2>Why This Matters</h2>
+                <p>
+                    The vectorized representation creates a machine-readable feature space in
+                    which the Random Forest model can learn relationships between symptom
+                    patterns and disease labels.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>06</span><strong>MODEL</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Random Forest Classifier</h2>
+                <p>
+                    A `RandomForestClassifier` with <strong>200 decision trees</strong> is trained
+                    on the vectorized symptom features. Each tree produces a classification
+                    decision, and the ensemble combines the tree-level predictions to determine
+                    the final disease class.
+                </p>
+                <div class="metric-callout-grid">
+                    <div class="metric-callout"><strong>200</strong><span>DECISION TREES</span></div>
+                    <div class="metric-callout"><strong>TEXT</strong><span>INPUT REPRESENTATION</span></div>
+                    <div class="metric-callout"><strong>MULTI</strong><span>CLASS OUTPUT</span></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Training Flow</h2>
+                <div class="architecture-stack">
+                    <div>Processed Symptom Dataset</div><i>↓</i>
+                    <div>CountVectorizer Features</div><i>↓</i>
+                    <div class="accent-box">RandomForestClassifier(n_estimators = 200)</div><i>↓</i>
+                    <div>Trained Disease Classifier</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>07</span><strong>MODEL PERSISTENCE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Reusable Inference Components</h2>
+                <p>
+                    The trained components are persisted using Joblib so the prediction workflow
+                    can load the learned artifacts without retraining the model each time.
+                </p>
+                <div class="equation-box">
+                    <code>disease_prediction_model.joblib</code>
+                    <code>label_encoder.joblib</code>
+                    <code>treatment_map.joblib</code>
+                </div>
+            </section>
+
+            <section>
+                <h2>Training → Inference Separation</h2>
+                <div class="pipeline">
+                    <span>TRAIN</span><i>→</i><span>SAVE ARTIFACTS</span><i>→</i>
+                    <span>LOAD</span><i>→</i><span>PREDICT</span>
+                </div>
+                <p>
+                    Separating model training from prediction makes the application simpler to
+                    reuse: the trained classifier, label encoder and treatment mapping can be
+                    loaded directly for subsequent user queries.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>08</span><strong>INFERENCE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Prediction Workflow</h2>
+                <div class="flow-diagram">
+                    <div>User enters symptoms as comma-separated text</div><i>↓</i>
+                    <div>Symptoms are normalized</div><i>↓</i>
+                    <div>Saved CountVectorizer transforms the input</div><i>↓</i>
+                    <div>Random Forest predicts encoded disease</div><i>↓</i>
+                    <div>LabelEncoder decodes disease name</div><i>↓</i>
+                    <div>Treatment map retrieves corresponding information</div><i>↓</i>
+                    <div>Prediction + treatment displayed</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>System Output</h2>
+                <p>
+                    The console application returns the predicted disease and the corresponding
+                    treatment information available in the dataset.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>09</span><strong>PROJECT FEATURES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <div class="feature-list">
+                    <div><strong>Symptom-Based Prediction</strong><p>Uses user-entered symptom text as the model input.</p></div>
+                    <div><strong>Text Feature Extraction</strong><p>Transforms symptoms into numerical features using CountVectorizer.</p></div>
+                    <div><strong>Multi-Class Classification</strong><p>Predicts a disease class using a Random Forest ensemble.</p></div>
+                    <div><strong>Label Decoding</strong><p>Converts the numerical model output back into the disease name.</p></div>
+                    <div><strong>Treatment Lookup</strong><p>Retrieves treatment information associated with the predicted disease.</p></div>
+                    <div><strong>Persistent Artifacts</strong><p>Saves the trained model and supporting components using Joblib.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>10</span><strong>LIMITATIONS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What the Current Implementation Does Not Claim</h2>
+                <p>
+                    The supplied implementation is an educational machine-learning application.
+                    It does not calculate or report a dedicated accuracy metric, and it does not
+                    implement a Flask web application in the shared project code.
+                </p>
+                <p>
+                    The system should therefore be presented as a symptom-based ML prototype,
+                    not as a clinically validated diagnostic system or professional medical
+                    decision-making tool.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>11</span><strong>FUTURE WORK</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Potential Extensions</h2>
+                <div class="feature-list">
+                    <div><strong>Advanced NLP</strong><p>Explore richer representations for natural-language symptom descriptions.</p></div>
+                    <div><strong>Input Robustness</strong><p>Add spelling correction and synonym handling for user-entered symptoms.</p></div>
+                    <div><strong>Model Evaluation</strong><p>Introduce a dedicated train/test evaluation workflow and classification metrics.</p></div>
+                    <div><strong>Model Comparison</strong><p>Compare Random Forest with alternative classification approaches.</p></div>
+                    <div><strong>Web Interface</strong><p>Extend the console workflow into a Flask or Streamlit application.</p></div>
+                    <div><strong>Expanded Features</strong><p>Investigate how additional dataset attributes could contribute to an expanded model.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>12</span><strong>MY CONTRIBUTION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What I Built</h2>
+                <p>
+                    Developed an end-to-end Python machine-learning workflow for symptom-based
+                    disease classification, including dataset preprocessing, symptom text
+                    normalization, label encoding, CountVectorizer feature extraction,
+                    Random Forest training, Joblib model persistence, inference, and
+                    disease-to-treatment lookup.
+                </p>
+                <p>
+                    The project provided practical experience connecting data preprocessing,
+                    natural-language feature representation, supervised classification and
+                    reusable model artifacts into a complete prediction workflow.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>13</span><strong>TAKEAWAY</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Turning Text into a Machine-Learning Pipeline</h2>
+                <div class="pipeline">
+                    <span>RAW DATA</span><i>→</i>
+                    <span>TEXT PREPROCESSING</span><i>→</i>
+                    <span>FEATURE VECTORIZATION</span><i>→</i>
+                    <span>CLASSIFICATION</span><i>→</i>
+                    <span>PERSISTENCE</span><i>→</i>
+                    <span>INFERENCE</span>
+                </div>
+                <p>
+                    The project demonstrates how unstructured symptom descriptions can be
+                    transformed into a numerical representation and passed through a supervised
+                    learning pipeline to produce a usable prediction.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>14</span><strong>TECHNOLOGIES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Tools &amp; Concepts</h2>
+                <div class="large-tags">
+                    <span>Python</span><span>Pandas</span><span>Scikit-learn</span>
+                    <span>CountVectorizer</span><span>Random Forest</span>
+                    <span>LabelEncoder</span><span>Joblib</span><span>Supervised Learning</span>
+                    <span>Multi-Class Classification</span><span>NLP / Text Features</span>
+                    <span>Data Preprocessing</span><span>Model Persistence</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-resources">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>15</span><strong>RESOURCES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Project Evidence</h2>
+                <p>
+                    Supporting material can be connected here when the final internship/project
+                    report, presentation, certificate, source repository, dataset reference,
+                    and screenshots are added.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>PROJECT / INTERNSHIP REPORT</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PRESENTATION</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>SCREENSHOTS / DEMO</span><strong>Coming soon ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>16</span><strong>DISCLAIMER</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <p>
+                    <strong>Educational project only.</strong> This application is not intended
+                    to provide medical diagnosis or professional medical advice. Treatment
+                    information is based on the supplied dataset.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="project-nav">
+    <a href="ahb-apb-bridge.html">← Previous Project</a>
+    <a href="image-classification.html">Next Project →</a>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>

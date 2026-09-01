@@ -1,1 +1,492 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Image Recognition & Classification Using Deep Learning | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">DEEP LEARNING · COMPUTER VISION</p><h1>Image Recognition & Classification Using Deep Learning</h1><p>A CNN-based image-classification system trained on CIFAR-10, with model evaluation and an interactive Streamlit prediction interface.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>YBI Foundation</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Python</span><span>TensorFlow</span><span>Keras</span><span>Streamlit</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A CNN-based image-classification system trained on CIFAR-10, with model evaluation and an interactive Streamlit prediction interface.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Image Classification Using CNN — Adhiraj Mandal.">
+    <title>Image Classification Using CNN | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+<section class="detail-hero">
+    <p class="detail-kicker">DEEP LEARNING · COMPUTER VISION · CNN</p>
+    <h1>Image Classification <span style="color:var(--accent)">Using CNN.</span></h1>
+    <p>
+        An end-to-end deep learning image-classification system built with TensorFlow/Keras,
+        trained on CIFAR-10, evaluated on unseen test data, and integrated with an interactive
+        Streamlit application for image prediction.
+    </p>
+    <div class="detail-hero-meta">
+        <span>YBI Foundation Internship</span>
+        <span>CIFAR-10</span>
+        <span>TensorFlow / Keras</span>
+        <span>Python</span>
+        <span>Streamlit</span>
+    </div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+    <div class="detail-grid">
+        <aside class="detail-sidebar">
+            <div><span>PROJECT TYPE</span><strong>Deep Learning / Computer Vision</strong></div>
+            <div><span>DATASET</span><strong>CIFAR-10</strong></div>
+            <div><span>INPUT</span><strong>32 × 32 × 3 RGB Image</strong></div>
+            <div><span>CLASSES</span><strong>10 Object Categories</strong></div>
+            <div><span>TRAINING</span><strong>10 Epochs · 50,000 Images</strong></div>
+        </aside>
+        <article class="detail-body">
+            <div class="metric-callout-grid">
+                <div class="metric-callout"><strong>70.51%</strong><span>TEST ACCURACY</span></div>
+                <div class="metric-callout"><strong>77.36%</strong><span>TRAINING ACCURACY</span></div>
+                <div class="metric-callout"><strong>10</strong><span>IMAGE CLASSES</span></div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>From Pixels to Object Classes</h2>
+                <p>
+                    Developed an end-to-end deep learning system for image classification using
+                    a Convolutional Neural Network (CNN). The model was trained on the CIFAR-10
+                    dataset to classify RGB images into ten predefined object categories.
+                </p>
+                <p>
+                    The implementation covers the complete workflow from image preprocessing and
+                    CNN architecture design through model training, evaluation, persistence,
+                    and interactive inference using Streamlit.
+                </p>
+            </section>
+
+            <section>
+                <h2>End-to-End Pipeline</h2>
+                <div class="pipeline">
+                    <span>CIFAR-10</span><i>→</i>
+                    <span>PREPROCESS</span><i>→</i>
+                    <span>CNN</span><i>→</i>
+                    <span>TRAIN</span><i>→</i>
+                    <span>EVALUATE</span><i>→</i>
+                    <span>SAVE MODEL</span><i>→</i>
+                    <span>STREAMLIT</span><i>→</i>
+                    <span>PREDICT</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>02</span><strong>OBJECTIVE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Automated Image Recognition</h2>
+                <p>
+                    The objective was to develop a computer-vision model capable of automatically
+                    identifying the class of an input image. The system accepts an image,
+                    processes it through the trained CNN, and returns the predicted object
+                    category together with a confidence score.
+                </p>
+            </section>
+
+            <section>
+                <h2>Inference Flow</h2>
+                <div class="architecture-stack">
+                    <div>Input Image</div><i>↓</i>
+                    <div>Image Preprocessing</div><i>↓</i>
+                    <div class="accent-box">Trained CNN</div><i>↓</i>
+                    <div>Class Probabilities</div><i>↓</i>
+                    <div>Predicted Category + Confidence</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>03</span><strong>DATASET</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>CIFAR-10</h2>
+                <p>
+                    The CNN was trained using CIFAR-10, a benchmark dataset containing
+                    <strong>60,000 labeled RGB images</strong>: 50,000 training images and
+                    10,000 test images. Each image has a resolution of 32 × 32 pixels.
+                </p>
+            </section>
+
+            <section>
+                <h2>Ten Object Classes</h2>
+                <div class="large-tags">
+                    <span>Airplane</span><span>Automobile</span><span>Bird</span>
+                    <span>Cat</span><span>Deer</span><span>Dog</span>
+                    <span>Frog</span><span>Horse</span><span>Ship</span><span>Truck</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Dataset Split</h2>
+                <div class="metric-callout-grid">
+                    <div class="metric-callout"><strong>50K</strong><span>TRAINING IMAGES</span></div>
+                    <div class="metric-callout"><strong>10K</strong><span>TEST IMAGES</span></div>
+                    <div class="metric-callout"><strong>32×32</strong><span>IMAGE RESOLUTION</span></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>04</span><strong>PREPROCESSING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Pixel Normalization</h2>
+                <p>
+                    Before training, RGB pixel values are normalized from the original
+                    0–255 range to a 0–1 numerical range. This provides a consistent input
+                    scale for neural-network training.
+                </p>
+                <div class="equation-box centered-equation">
+                    <code>Normalized Pixel = Pixel Value / 255</code>
+                </div>
+            </section>
+
+            <section>
+                <h2>Input Representation</h2>
+                <div class="architecture-stack">
+                    <div>RGB Image</div><i>↓</i>
+                    <div>32 × 32 × 3 Tensor</div><i>↓</i>
+                    <div>Pixel Values in [0, 1]</div><i>↓</i>
+                    <div>CNN Input</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>05</span><strong>CNN ARCHITECTURE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Convolutional Feature Extraction</h2>
+                <p>
+                    The model uses convolutional layers to learn visual features from the input
+                    images. Max-pooling layers progressively reduce spatial dimensions while
+                    retaining important learned features.
+                </p>
+                <div class="architecture-stack">
+                    <div>Input · 32 × 32 × 3</div><i>↓</i>
+                    <div class="accent-box">Convolution · 32 Filters</div><i>↓</i>
+                    <div>Max Pooling</div><i>↓</i>
+                    <div class="accent-box">Convolution · 64 Filters</div><i>↓</i>
+                    <div>Max Pooling</div><i>↓</i>
+                    <div>Flatten</div><i>↓</i>
+                    <div>Dense · 64 Neurons</div><i>↓</i>
+                    <div>Output · 10 Classes</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Architecture Roles</h2>
+                <div class="feature-list">
+                    <div><strong>Convolution</strong><p>Learns spatial visual features from image pixels.</p></div>
+                    <div><strong>Max Pooling</strong><p>Reduces spatial dimensions while retaining salient features.</p></div>
+                    <div><strong>Flatten</strong><p>Transforms the learned feature maps into a vector for the dense layer.</p></div>
+                    <div><strong>Dense Layer</strong><p>Combines learned features before the final ten-class prediction.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>06</span><strong>TRAINING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Model Training Configuration</h2>
+                <div class="large-tags">
+                    <span>Adam Optimizer</span>
+                    <span>Sparse Categorical Crossentropy</span>
+                    <span>10 Epochs</span>
+                    <span>50,000 Training Samples</span>
+                    <span>CIFAR-10 Test Set</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Training Workflow</h2>
+                <div class="pipeline">
+                    <span>PREPARED DATA</span><i>→</i>
+                    <span>CNN</span><i>→</i>
+                    <span>LOSS</span><i>→</i>
+                    <span>ADAM</span><i>→</i>
+                    <span>WEIGHT UPDATE</span><i>→</i>
+                    <span>NEXT EPOCH</span>
+                </div>
+                <p>
+                    Training and validation metrics were tracked across epochs to observe model
+                    learning and generalization behavior.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>07</span><strong>RESULTS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Model Performance</h2>
+                <div class="metric-callout-grid">
+                    <div class="metric-callout"><strong>77.36%</strong><span>TRAINING ACCURACY</span></div>
+                    <div class="metric-callout"><strong>70.51%</strong><span>VALIDATION ACCURACY</span></div>
+                    <div class="metric-callout"><strong>70.51%</strong><span>TEST ACCURACY</span></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Learning Curves</h2>
+                <p>
+                    Training and validation accuracy/loss curves were visualized using Matplotlib
+                    to inspect how performance evolved over the ten training epochs and to
+                    evaluate the relationship between training performance and generalization.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>TRAINING / VALIDATION ACCURACY GRAPH</span><strong>Add screenshot ↗</strong></a>
+                    <a href="#" class="resource-item"><span>TRAINING / VALIDATION LOSS GRAPH</span><strong>Add screenshot ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>08</span><strong>TESTING</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Evaluation on Unseen Images</h2>
+                <p>
+                    After training, the CNN was evaluated using unseen images from the CIFAR-10
+                    test dataset. The model generated a prediction corresponding to one of the
+                    ten learned object categories for each test image.
+                </p>
+            </section>
+
+            <section>
+                <h2>Testing Goal</h2>
+                <div class="feature-list">
+                    <div><strong>Generalization</strong><p>Determine whether learned visual features transfer beyond the training samples.</p></div>
+                    <div><strong>Classification</strong><p>Verify that unseen images can be mapped to one of the ten learned categories.</p></div>
+                    <div><strong>Prediction Confidence</strong><p>Expose the model's confidence for individual inference results.</p></div>
+                    <div><strong>Application Readiness</strong><p>Use the trained model as the inference engine for the interactive frontend.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>09</span><strong>DEPLOYMENT</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Streamlit Inference Application</h2>
+                <p>
+                    A Streamlit web application was developed to make the trained CNN usable
+                    without directly interacting with the training code. The application
+                    provides an image-upload interface and connects the uploaded image to
+                    the saved model for inference.
+                </p>
+            </section>
+
+            <section>
+                <h2>Application Workflow</h2>
+                <div class="architecture-stack">
+                    <div>Upload Image</div><i>↓</i>
+                    <div>Image Preprocessing</div><i>↓</i>
+                    <div class="accent-box">Saved CNN Model</div><i>↓</i>
+                    <div>Class Prediction</div><i>↓</i>
+                    <div>Confidence Score</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Frontend Role</h2>
+                <p>
+                    The frontend separates model development from model usage: the trained
+                    network becomes an interactive demonstration that allows a user to supply
+                    an image and observe the classification result.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>10</span><strong>KEY FEATURES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <div class="feature-list">
+                    <div><strong>CNN Classification</strong><p>Multiclass image classification across ten CIFAR-10 categories.</p></div>
+                    <div><strong>Image Preprocessing</strong><p>Automatic normalization and inference preparation.</p></div>
+                    <div><strong>Performance Tracking</strong><p>Training and validation metrics tracked across epochs.</p></div>
+                    <div><strong>Model Evaluation</strong><p>Evaluation performed on unseen CIFAR-10 test images.</p></div>
+                    <div><strong>Saved Model</strong><p>Trained model retained for later inference.</p></div>
+                    <div><strong>Interactive UI</strong><p>Streamlit interface for image upload and prediction.</p></div>
+                    <div><strong>Confidence Output</strong><p>Prediction is accompanied by a confidence score.</p></div>
+                    <div><strong>Project Documentation</strong><p>Implementation and demonstration documented through GitHub.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>11</span><strong>PROJECT WORKFLOW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Dataset → Deployable AI Application</h2>
+                <div class="pipeline">
+                    <span>DATASET ACQUISITION</span><i>→</i>
+                    <span>PREPROCESSING</span><i>→</i>
+                    <span>CNN DESIGN</span><i>→</i>
+                    <span>TRAINING</span><i>→</i>
+                    <span>EVALUATION</span><i>→</i>
+                    <span>MODEL SAVING</span><i>→</i>
+                    <span>STREAMLIT</span><i>→</i>
+                    <span>INFERENCE</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>12</span><strong>MY CONTRIBUTION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What I Built</h2>
+                <p>
+                    Worked across the complete implementation pipeline: preparing and
+                    preprocessing CIFAR-10, designing the CNN architecture with TensorFlow/Keras,
+                    training and evaluating the model, monitoring training and validation
+                    performance, testing unseen images, saving the trained model, and developing
+                    a Streamlit frontend integrated with the trained network.
+                </p>
+                <p>
+                    The project connected model development with practical inference deployment,
+                    providing hands-on experience taking a deep learning model from raw data
+                    through to an interactive AI application.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>13</span><strong>TAKEAWAY</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Bridging Deep Learning &amp; Application Deployment</h2>
+                <div class="pipeline">
+                    <span>IMAGE DATA</span><i>→</i>
+                    <span>FEATURE LEARNING</span><i>→</i>
+                    <span>CLASSIFICATION</span><i>→</i>
+                    <span>MODEL PERSISTENCE</span><i>→</i>
+                    <span>INTERACTIVE INFERENCE</span>
+                </div>
+                <p>
+                    The project demonstrates the practical lifecycle of a computer-vision
+                    model: learning visual representations from image data, evaluating
+                    generalization on unseen samples, preserving the trained model, and
+                    exposing inference through a user-facing application.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>14</span><strong>TECHNOLOGIES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Tools &amp; Concepts</h2>
+                <div class="large-tags">
+                    <span>Python</span><span>TensorFlow</span><span>Keras</span>
+                    <span>NumPy</span><span>Matplotlib</span><span>Streamlit</span>
+                    <span>Google Colab</span><span>GitHub</span>
+                    <span>Convolutional Neural Networks</span><span>Computer Vision</span>
+                    <span>Image Classification</span><span>Deep Learning</span>
+                    <span>Model Evaluation</span><span>Model Deployment</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-resources">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>15</span><strong>RESOURCES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Project Evidence</h2>
+                <p>
+                    The final page can connect the actual internship/project report, presentation,
+                    certificate, GitHub repository, training curves, Colab outputs, Streamlit
+                    screenshots, and prediction demonstrations here.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>PROJECT / INTERNSHIP REPORT</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PRESENTATION</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>TRAINING GRAPHS</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>STREAMLIT DEMO / SCREENSHOTS</span><strong>Coming soon ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="project-nav">
+    <a href="disease-predictor.html">← Previous Project</a>
+    <a href="pic16f877a-microwave.html">Next Project →</a>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>

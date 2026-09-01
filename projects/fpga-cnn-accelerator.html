@@ -1,1 +1,175 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>FPGA-Based CNN Accelerator & AI Hardware Pipeline Design | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">FPGA · AI HARDWARE</p><h1>FPGA-Based CNN Accelerator & AI Hardware Pipeline Design</h1><p>A pipelined FPGA-oriented CNN accelerator implementing 3×3 convolution, ReLU activation, and 2×2 max pooling with dedicated RTL verification.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>Independent Project</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Verilog</span><span>FPGA</span><span>CNN</span><span>Vivado</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A pipelined FPGA-oriented CNN accelerator implementing 3×3 convolution, ReLU activation, and 2×2 max pooling with dedicated RTL verification.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Design and Verification of a Pipelined FPGA-Based CNN Accelerator — Adhiraj Mandal.">
+<title>Pipelined FPGA-Based CNN Accelerator | Adhiraj Mandal</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="navbar"><div class="nav-container">
+<a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+<a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+</div></header>
+
+<main class="detail-main">
+<section class="detail-hero">
+<p class="detail-kicker">AI HARDWARE · FPGA · RTL · COMPUTER ARCHITECTURE</p>
+<h1>Design and Verification of a Pipelined FPGA-Based CNN <span style="color:var(--accent)">Accelerator.</span></h1>
+<p>A simplified, verified FPGA-oriented CNN accelerator implementing 3×3 convolution, ReLU activation, and 2×2 max pooling as a multi-stage pipelined RTL datapath.</p>
+<div class="detail-hero-meta"><span>AI Hardware</span><span>FPGA / VLSI</span><span>RTL Design</span><span>Hardware Verification</span></div>
+<a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section"><div class="detail-grid">
+<aside class="detail-sidebar">
+<div><span>PROJECT TYPE</span><strong>FPGA AI Accelerator</strong></div>
+<div><span>CORE OPERATIONS</span><strong>3×3 Conv · ReLU · 2×2 Pool</strong></div>
+<div><span>ARCHITECTURE</span><strong>Multi-Stage Pipeline</strong></div>
+<div><span>IMPLEMENTATION</span><strong>Verilog RTL</strong></div>
+<div><span>ANALYSIS</span><strong>Latency · Throughput · FPGA Resources</strong></div>
+</aside>
+<article class="detail-body"><div class="metric-callout-grid">
+<div class="metric-callout"><strong>3×3</strong><span>CONVOLUTION</span></div>
+<div class="metric-callout"><strong>2×2</strong><span>MAX POOLING</span></div>
+<div class="metric-callout"><strong>PIPELINED</strong><span>RTL DATAPATH</span></div>
+</div></article>
+</div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+<article class="detail-body">
+<section><h2>From CNN Computation to FPGA Hardware</h2>
+<p>This project explores the design of a dedicated hardware accelerator for fundamental CNN inference operations using an FPGA-oriented RTL architecture.</p>
+<p>The accelerator decomposes the computation into dedicated <strong>3×3 convolution, ReLU activation, and 2×2 max-pooling</strong> blocks and connects them through clocked pipeline registers. The design was verified through simulation and taken through the Xilinx Vivado synthesis flow for hardware analysis.</p></section>
+<section><h2>Scope</h2><p>The implementation is intentionally a <strong>simplified, verified FPGA-oriented CNN accelerator</strong>. It demonstrates the hardware architecture and verification concepts without claiming a production-scale CNN engine, full image streaming system, large parallel MAC array, or complete sliding-window engine.</p></section>
+</article></div></section>
+
+<section class="detail-content detail-band"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>02</span><strong>SYSTEM ARCHITECTURE</strong></div></aside>
+<article class="detail-body">
+<section><h2>Multi-Stage CNN Datapath</h2>
+<div class="architecture-stack">
+<div>Input</div><i>↓</i>
+<div class="accent-box">3×3 Convolution Compute Unit</div><i>↓</i>
+<div>Pipeline Register</div><i>↓</i>
+<div class="accent-box">ReLU Activation</div><i>↓</i>
+<div>Pipeline Register</div><i>↓</i>
+<div class="accent-box">2×2 Max Pooling</div><i>↓</i>
+<div>Output Register</div><i>↓</i>
+<div>Output</div>
+</div></section>
+<section><h2>Pipeline Stages</h2><div class="feature-list">
+<div><strong>Stage 1 · Convolution</strong><p>Performs the 3×3 weighted sum that forms the core CNN computation.</p></div>
+<div><strong>Stage 2 · ReLU</strong><p>Applies the nonlinear activation using sign detection and selection logic.</p></div>
+<div><strong>Stage 3 · Max Pooling</strong><p>Reduces a 2×2 activation region to its maximum value.</p></div>
+<div><strong>Stage 4 · Registered Output</strong><p>Captures the processed result at the output boundary.</p></div>
+</div></section>
+</article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>03</span><strong>CONVOLUTION ENGINE</strong></div></aside>
+<article class="detail-body">
+<section><h2>3×3 Convolution</h2><p>The convolution block accepts a 3×3 input window and a 3×3 kernel and performs nine multiplication operations followed by accumulation to generate one convolution output.</p>
+<div class="array-diagram"><div class="array-title">3 × 3 INPUT WINDOW × 3 × 3 KERNEL</div>
+<div class="flow-split"><span>a0 a1 a2</span><span>w0 w1 w2</span><span>Σ(ai × wi)</span></div>
+<div class="flow-split" style="margin-top:8px"><span>a3 a4 a5</span><span>w3 w4 w5</span><span>+ accumulated terms</span></div>
+<div class="flow-split" style="margin-top:8px"><span>a6 a7 a8</span><span>w6 w7 w8</span><span>→ output</span></div>
+</div></section>
+<section><h2>MAC Foundation</h2><p>The fundamental operation is:</p><div class="equation-box centered-equation"><code>Accumulator ← Accumulator + Input × Weight</code></div><p>The MAC structure provides the arithmetic foundation for convolution and can be extended toward more parallel accelerator architectures.</p></section>
+</article></div></section>
+
+<section class="detail-content detail-band"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>04</span><strong>ACTIVATION & POOLING</strong></div></aside>
+<article class="detail-body">
+<section><h2>ReLU Activation</h2><div class="equation-box centered-equation"><code>ReLU(x) = max(0, x)</code></div><p>Negative values are suppressed to zero, while non-negative values pass through. In hardware, this can be implemented using sign comparison and selection logic.</p></section>
+<section><h2>2×2 Max Pooling</h2><div class="flow-diagram"><div> a &nbsp; b<br> c &nbsp; d </div><i>↓</i><div class="accent-box">max(a, b, c, d)</div></div><p>Comparator-based selection reduces the four inputs to the strongest activation, reducing spatial representation and subsequent computation.</p></section>
+</article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>05</span><strong>PIPELINING</strong></div></aside>
+<article class="detail-body">
+<section><h2>Why Pipeline the CNN?</h2><p>The major architectural focus is inserting registers between the main computational stages instead of treating the CNN datapath as one long combinational path.</p>
+<div class="pipeline"><span>CONV</span><i>→</i><span>REGISTER</span><i>→</i><span>RELU</span><i>→</i><span>REGISTER</span><i>→</i><span>POOL</span><i>→</i><span>REGISTER</span></div></section>
+<section><h2>Latency vs. Throughput</h2><div class="feature-list">
+<div><strong>Latency</strong><p>The number of clock cycles needed for one input to propagate through the pipeline.</p></div>
+<div><strong>Throughput</strong><p>The rate at which outputs can be processed after the pipeline has been filled.</p></div>
+<div><strong>Trade-Off</strong><p>Pipeline registers add stages and storage, but allow multiple operations to be in progress concurrently.</p></div>
+<div><strong>Architecture</strong><p>The project uses pipelining as a classical computer-architecture technique for improving processing throughput.</p></div>
+</div></section>
+</article></div></section>
+
+<section class="detail-content detail-band"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>06</span><strong>VERIFICATION</strong></div></aside>
+<article class="detail-body">
+<section><h2>Module-Level Verification</h2><p>Dedicated Verilog testbenches were developed for the individual computational blocks before system integration.</p>
+<div class="large-tags"><span>MAC</span><span>3×3 Convolution</span><span>ReLU</span><span>2×2 Max Pool</span></div></section>
+<section><h2>System-Level Verification</h2><p>The integrated datapath was simulated to verify data propagation, pipeline sequencing, output correctness, reset behavior, and enable behavior.</p>
+<div class="verification-flow">
+<div><span>TESTBENCH</span><strong>Known Inputs</strong><p>Apply controlled patterns and expected results.</p></div>
+<div class="verify-arrow">→</div>
+<div><span>RTL SIMULATION</span><strong>Waveform / Output</strong><p>Inspect functional behavior and pipeline timing.</p></div>
+</div></section>
+<section><h2>Convolution Check</h2><p>For the representative 3×3 input and kernel:</p><div class="equation-box"><code>Input  = [1 2 3; 4 5 6; 7 8 9]</code><code>Kernel = [1 0 1; 0 1 0; 1 0 1]</code><code>Expected output = 1×1 + 3×1 + 5×1 + 7×1 + 9×1 = 25</code></div><p>The corresponding RTL simulation result is used to confirm the convolution implementation.</p></section>
+</article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>07</span><strong>FPGA ANALYSIS</strong></div></aside>
+<article class="detail-body">
+<section><h2>Xilinx Vivado Flow</h2><div class="flow-diagram"><div>Verilog RTL</div><i>↓</i><div>Elaboration / Synthesis</div><i>↓</i><div>FPGA Implementation Analysis</div><i>↓</i><div>Resources + Timing</div></div></section>
+<section><h2>Implementation Metrics</h2><p>The synthesis stage is used to examine the hardware characteristics of the RTL design.</p>
+<div class="metric-callout-grid">
+<div class="metric-callout"><strong>LUT</strong><span>ACTUAL VIVADO VALUE</span></div>
+<div class="metric-callout"><strong>FF</strong><span>ACTUAL VIVADO VALUE</span></div>
+<div class="metric-callout"><strong>FMAX</strong><span>ACTUAL VIVADO VALUE</span></div>
+</div>
+<p style="margin-top:18px;color:var(--muted);font-size:.75rem">Final utilization, timing, DSP, BRAM, and pipeline-latency values will be inserted from the actual Vivado reports. No figures are being inferred.</p></section>
+</article></div></section>
+
+<section class="detail-content detail-band"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>08</span><strong>DESIGN CHALLENGES</strong></div></aside>
+<article class="detail-body"><section><h2>Engineering Decisions</h2><div class="feature-list">
+<div><strong>Algorithm → Hardware</strong><p>Decomposed CNN mathematics into explicit convolution, activation, and pooling hardware blocks.</p></div>
+<div><strong>Throughput</strong><p>Introduced pipeline registers between major stages to enable concurrent stage operation.</p></div>
+<div><strong>Correctness</strong><p>Verified individual modules before validating the integrated datapath.</p></div>
+<div><strong>Scope Control</strong><p>Kept the implementation focused on a verified architectural proof of concept rather than overstating it as a production CNN engine.</p></div>
+</div></section></article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>09</span><strong>RESULTS & SIGNIFICANCE</strong></div></aside>
+<article class="detail-body">
+<section><h2>What the Project Demonstrates</h2><p>The project demonstrates a functional FPGA-oriented CNN computation architecture with dedicated RTL implementations of convolution, ReLU, and max pooling, integrated into a pipelined datapath and verified through simulation.</p><div class="large-tags"><span>Functional RTL</span><span>Pipeline Design</span><span>Simulation</span><span>Latency Analysis</span><span>Throughput Analysis</span><span>FPGA Synthesis</span></div></section>
+<section><h2>AI Algorithm → Hardware Architecture</h2><div class="pipeline"><span>CNN</span><i>→</i><span>HARDWARE DATAPATH</span><i>→</i><span>RTL</span><i>→</i><span>VERIFICATION</span><i>→</i><span>FPGA</span></div></section>
+</article></div></section>
+
+<section class="detail-content detail-band"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>10</span><strong>FUTURE WORK</strong></div></aside>
+<article class="detail-body"><section><h2>Paths Toward a Larger Accelerator</h2><div class="large-tags">
+<span>Sliding-Window Convolution</span><span>Streaming I/O</span><span>Parallel MAC Units</span><span>PE Arrays</span><span>INT8 Quantization</span><span>BRAM Buffering</span><span>Weight / Activation Tiling</span><span>AXI Interfaces</span><span>Larger CNN Models</span><span>HW/SW Co-Design</span>
+</div><p>These extensions would move the proof-of-concept toward a higher-throughput CNN accelerator capable of handling larger feature maps and more extensive model workloads.</p></section></article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>11</span><strong>MY CONTRIBUTION</strong></div></aside>
+<article class="detail-body"><section><h2>What I Built</h2><p>Designed and verified the RTL architecture for a pipelined FPGA-oriented CNN accelerator, implementing the convolution, ReLU, and max-pooling datapath blocks and integrating them with clocked pipeline stages.</p><p>Developed simulation testbenches for functional validation and analyzed the architecture using latency, throughput, and FPGA synthesis concepts.</p></section></article></div></section>
+
+<section class="detail-content"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>12</span><strong>TECHNOLOGIES</strong></div></aside>
+<article class="detail-body"><section><h2>Tools & Concepts</h2><div class="large-tags"><span>Verilog HDL</span><span>SystemVerilog / Testbenches</span><span>Xilinx Vivado</span><span>Vivado Simulator</span><span>ModelSim</span><span>RTL Design</span><span>FPGA</span><span>CNNs</span><span>MAC Units</span><span>Convolution</span><span>ReLU</span><span>Max Pooling</span><span>Pipelining</span><span>Functional Verification</span><span>Timing Analysis</span><span>Throughput Analysis</span></div></section></article></div></section>
+
+<section class="detail-content detail-resources"><div class="detail-grid">
+<aside class="detail-sidebar"><div><span>13</span><strong>RESOURCES</strong></div></aside>
+<article class="detail-body"><section><h2>Project Evidence</h2><p>Supporting files and demonstrations can be connected here once the final report, presentation, source repository, and simulation/synthesis evidence are added.</p>
+<div class="resource-list">
+<a href="#" class="resource-item"><span>PROJECT REPORT</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>PROJECT PRESENTATION</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>SIMULATION / WAVEFORMS</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>FPGA / VIVADO RESULTS</span><strong>Coming soon ↗</strong></a>
+</div></section></article></div></section>
+
+<section class="project-nav"><a href="xgboost-inference-engine.html">← Previous Project</a><a href="ai-asic-design-suite.html">Next Project →</a></section>
+</main>
+<footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer>
+</body>
+</html>

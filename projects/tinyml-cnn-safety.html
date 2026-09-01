@@ -1,1 +1,481 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TinyML CNN Accelerator & Warehouse Vision Safety Controller | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">EDGE AI · AI HARDWARE</p><h1>TinyML CNN Accelerator & Warehouse Vision Safety Controller</h1><p>A quantized CNN accelerator integrated with a warehouse safety controller for vision-based hazard detection and deterministic emergency-stop control.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>IIIT Bangalore</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>TinyML</span><span>CNN</span><span>RTL</span><span>Embedded Systems</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A quantized CNN accelerator integrated with a warehouse safety controller for vision-based hazard detection and deterministic emergency-stop control.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TinyML CNN Accelerator and Warehouse Vision Safety Controller — Adhiraj Mandal.">
+    <title>TinyML CNN Accelerator & Warehouse Vision Safety Controller | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+<section class="detail-hero">
+    <p class="detail-kicker">EDGE AI · TINYML · AI HARDWARE · RTL</p>
+    <h1>TinyML CNN Accelerator <span style="color:var(--accent)">&amp;</span> Warehouse Vision Safety Controller.</h1>
+    <p>
+        An end-to-end Edge AI hardware system that combines an INT8 TinyML CNN accelerator
+        with deterministic safety logic, register control, SPI communication, and PWM-based
+        robot motor control.
+    </p>
+    <div class="detail-hero-meta">
+        <span>IIIT Bangalore</span>
+        <span>AI Hardware / VLSI</span>
+        <span>Computer Vision</span>
+        <span>Embedded Systems</span>
+    </div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+    <div class="detail-grid">
+        <aside class="detail-sidebar">
+            <div><span>PROJECT TYPE</span><strong>Edge AI + RTL System</strong></div>
+            <div><span>DATASET</span><strong>1,562 Images</strong></div>
+            <div><span>MODEL</span><strong>TinyML CNN · INT8</strong></div>
+            <div><span>CLASSES</span><strong>Human · Obstacle · Pallet · Free Space</strong></div>
+            <div><span>AI ACCURACY</span><strong>~94.9%</strong></div>
+        </aside>
+        <article class="detail-body">
+            <div class="metric-callout-grid">
+                <div class="metric-callout"><strong>94.9%</strong><span>CNN ACCURACY</span></div>
+                <div class="metric-callout"><strong>INT8</strong><span>QUANTIZED INFERENCE</span></div>
+                <div class="metric-callout"><strong>4</strong><span>WAREHOUSE CLASSES</span></div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>From Image to Robot Control</h2>
+                <p>
+                    This project was developed in two connected stages. The first stage focused
+                    on designing a lightweight TinyML CNN accelerator capable of hardware-friendly
+                    image classification. The second stage extended that accelerator into a
+                    Warehouse Vision Safety Controller (WVSC) for autonomous warehouse robots.
+                </p>
+                <p>
+                    The resulting system demonstrates the complete path from
+                    <strong>image → AI inference → object classification → safety decision →
+                    register update → motor control</strong>.
+                </p>
+            </section>
+            <section>
+                <h2>Core Design Philosophy</h2>
+                <p>
+                    The architecture separates perception from safety-critical decision making.
+                    The CNN answers <em>“What is in front of the robot?”</em>, while deterministic
+                    RTL safety logic answers <em>“What should the robot do about it?”</em>.
+                </p>
+                <div class="feature-list">
+                    <div><strong>AI Perception</strong><p>Lightweight CNN inference identifies warehouse scene classes.</p></div>
+                    <div><strong>Deterministic Safety</strong><p>RTL logic evaluates human presence, motion, and danger-zone conditions.</p></div>
+                    <div><strong>Hardware Control</strong><p>Register and PWM logic translate the safety decision into motor-control behavior.</p></div>
+                    <div><strong>Edge Operation</strong><p>Hardware-oriented arithmetic reduces dependence on floating-point computation and external processing.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>02</span><strong>SYSTEM ARCHITECTURE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>End-to-End Architecture</h2>
+                <div class="architecture-stack">
+                    <div>RGB Camera Input</div><i>↓</i>
+                    <div>Vision Preprocessor · RGB → Grayscale</div><i>↓</i>
+                    <div class="accent-box">TinyML CNN Accelerator</div><i>↓</i>
+                    <div>CNN Result · Class + Confidence</div><i>↓</i>
+                    <div class="accent-box">Safety Engine</div><i>↓</i>
+                    <div>Register Bank</div><i>↓</i>
+                    <div>SPI Interface</div><i>↓</i>
+                    <div>PWM Controller</div><i>↓</i>
+                    <div>Robot Motors</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>03</span><strong>PHASE 1</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>TinyML CNN Accelerator</h2>
+                <p>
+                    A custom dataset containing <strong>1,562 images</strong> was used to train
+                    a CNN for four warehouse-relevant classes: Human, Obstacle, Pallet, and
+                    Free Space. The trained model achieved approximately <strong>94.9%
+                    classification accuracy</strong> and was subsequently converted to an
+                    INT8 representation for hardware-oriented inference.
+                </p>
+            </section>
+
+            <section>
+                <h2>Why INT8?</h2>
+                <p>
+                    Quantized 8-bit arithmetic reduces memory requirements and simplifies the
+                    hardware needed for multiplication and accumulation, making the model more
+                    suitable for resource-constrained FPGA/ASIC implementations.
+                </p>
+                <div class="large-tags">
+                    <span>Lower Memory</span><span>Smaller Multipliers</span>
+                    <span>Lower Arithmetic Cost</span><span>Hardware-Friendly Inference</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Vision Preprocessor</h2>
+                <p>
+                    Incoming RGB pixels are converted to grayscale using the hardware-friendly
+                    approximation:
+                </p>
+                <div class="equation-box centered-equation"><code>Gray = (R + 2G + B) / 4</code></div>
+                <p>
+                    The computation uses additions and bit shifting rather than floating-point
+                    operations. Line buffers retain neighboring image rows required for
+                    convolution processing.
+                </p>
+            </section>
+
+            <section>
+                <h2>CNN Compute Pipeline</h2>
+                <div class="flow-diagram">
+                    <div>Weight Memory</div><i>↓</i>
+                    <div>INT8 MAC Engine</div><i>↓</i>
+                    <div>Convolution</div><i>↓</i>
+                    <div>ReLU Activation</div><i>↓</i>
+                    <div>2×2 Max Pooling</div><i>↓</i>
+                    <div>Feature Scores</div><i>↓</i>
+                    <div>Classification Engine</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>04</span><strong>RTL COMPONENTS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>MAC Engine</h2>
+                <p>
+                    The Multiply-Accumulate unit forms the primary arithmetic element of the
+                    accelerator. Each operation follows:
+                </p>
+                <div class="equation-box centered-equation"><code>Accumulator = Accumulator + (Pixel × Weight)</code></div>
+            </section>
+
+            <section>
+                <h2>Activation & Pooling</h2>
+                <div class="feature-list">
+                    <div><strong>ReLU</strong><p>Negative activations are suppressed to zero using sign-based selection logic.</p></div>
+                    <div><strong>Max Pooling</strong><p>A 2×2 region is reduced to its maximum value using comparison logic.</p></div>
+                    <div><strong>Weight Memory</strong><p>Quantized INT8 weights are stored in addressable hardware-compatible memory.</p></div>
+                    <div><strong>Classification</strong><p>The four class scores are compared and the highest-scoring class is selected.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>05</span><strong>PHASE 2</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Warehouse Vision Safety Controller</h2>
+                <p>
+                    The second phase integrates the CNN accelerator into a larger RTL control
+                    system. The WVSC combines perception, deterministic safety logic,
+                    communication, register management, and motor control.
+                </p>
+                <div class="large-tags">
+                    <span>Vision Preprocessor</span><span>CNN System</span>
+                    <span>Safety Engine</span><span>Register Bank</span>
+                    <span>SPI Slave</span><span>PWM Controller</span>
+                    <span>Top-Level Integration</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Safety Engine</h2>
+                <p>
+                    The Safety Engine receives the CNN result together with motion and danger-zone
+                    information. The emergency condition is asserted when a human is detected
+                    while the robot is moving and the human is inside the defined danger zone.
+                </p>
+                <div class="state-flow">
+                    <span>HUMAN DETECTED</span><i>+</i>
+                    <span>ROBOT MOVING</span><i>+</i>
+                    <span>DANGER ZONE</span><i>→</i>
+                    <span>EMERGENCY STOP</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Safety-to-Motor Path</h2>
+                <div class="flow-diagram">
+                    <div>Human Detected</div><i>↓</i>
+                    <div>Safety Engine</div><i>↓</i>
+                    <div>Emergency Stop</div><i>↓</i>
+                    <div>PWM Control = 0</div><i>↓</i>
+                    <div>PWM Disabled</div><i>↓</i>
+                    <div>Robot Stops</div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>06</span><strong>CONTROL & COMMUNICATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Memory-Mapped Register Bank</h2>
+                <p>
+                    The register bank provides a structured interface for monitoring and
+                    controlling the system. Important registers include:
+                </p>
+                <div class="equation-box">
+                    <code>0x00  STATUS</code>
+                    <code>0x04  CONTROL</code>
+                    <code>0x08  FRAME_START</code>
+                    <code>0x0C  CNN_RESULT</code>
+                    <code>0x10  CONFIDENCE</code>
+                    <code>0x14  SAFETY_STATUS</code>
+                    <code>0x18  PWM_CONTROL</code>
+                </div>
+            </section>
+
+            <section>
+                <h2>SPI Slave</h2>
+                <p>
+                    The SPI interface provides an external processor with access to system
+                    registers for monitoring CNN predictions, confidence, safety status,
+                    and PWM control state. It supports register addressing, reads, and writes.
+                </p>
+            </section>
+
+            <section>
+                <h2>PWM Motor Controller</h2>
+                <p>
+                    An 8-bit counter provides the PWM time base. The PWM output is generated
+                    by comparing the counter value with the programmed duty cycle. The safety
+                    path can force the motor-control duty cycle to zero during an emergency.
+                </p>
+                <div class="state-flow">
+                    <span>8-BIT COUNTER</span><i>+</i><span>DUTY CYCLE</span><i>→</i><span>PWM OUTPUT</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>07</span><strong>VERIFICATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>RTL Verification</h2>
+                <p>
+                    The design was verified using dedicated testbenches for the major RTL
+                    components and system-level integration. Verification covered the PWM
+                    Controller, Register Bank, Safety Engine, SPI Slave, and top-level WVSC.
+                </p>
+                <div class="verification-flow">
+                    <div><span>MODULE-LEVEL</span><strong>Dedicated Testbenches</strong><p>Individual RTL behavior and interface checks.</p></div>
+                    <div class="verify-arrow">→</div>
+                    <div><span>SYSTEM-LEVEL</span><strong>Vivado Simulation</strong><p>Integrated safety and control behavior.</p></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Verification Focus</h2>
+                <ul>
+                    <li>CNN accelerator functionality</li>
+                    <li>PWM controller behavior</li>
+                    <li>Register read/write operations</li>
+                    <li>Safety-engine emergency-stop conditions</li>
+                    <li>SPI communication</li>
+                    <li>Top-level WVSC integration</li>
+                </ul>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>08</span><strong>DEMONSTRATIONS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Python AI Demonstration</h2>
+                <p>
+                    A Python-based demonstration was developed using TensorFlow, OpenCV,
+                    NumPy, and Pygame to visualize the practical behavior of the TinyML
+                    classifier and simulated warehouse robot.
+                </p>
+                <div class="large-tags">
+                    <span>TensorFlow</span><span>OpenCV</span><span>NumPy</span><span>Pygame</span>
+                </div>
+                <p>
+                    The demonstration displays CNN prediction, confidence, distance, PWM duty
+                    cycle, safety status, register values, and prediction history while
+                    representing different robot responses to Human, Obstacle, Pallet, and
+                    Free Space detections.
+                </p>
+            </section>
+
+            <section>
+                <h2>Interactive RTL Visualization</h2>
+                <p>
+                    A separate HTML-based visualization was developed to present the RTL
+                    architecture interactively, showing the Vision Preprocessor, CNN System,
+                    Safety Engine, Register Bank, SPI Interface, and PWM Controller.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>09</span><strong>ENGINEERING DECISIONS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Hardware-Oriented Design Choices</h2>
+                <div class="feature-list">
+                    <div><strong>Grayscale Conversion</strong><p>Addition and bit shifting replace floating-point computation.</p></div>
+                    <div><strong>INT8 Arithmetic</strong><p>Quantization reduces memory and arithmetic complexity.</p></div>
+                    <div><strong>ReLU</strong><p>Sign detection and selection avoid unnecessary arithmetic hardware.</p></div>
+                    <div><strong>Max Pooling</strong><p>Comparator-based reduction provides a simple hardware implementation.</p></div>
+                    <div><strong>PWM</strong><p>Counter and comparator logic provide deterministic motor control.</p></div>
+                    <div><strong>Register Interface</strong><p>Address decoding and memory-mapped registers expose system state cleanly.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>10</span><strong>MY CONTRIBUTION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What I Built</h2>
+                <p>
+                    Designed and integrated a TinyML-oriented CNN hardware pipeline and extended
+                    it into a Warehouse Vision Safety Controller. The work covered hardware-oriented
+                    CNN computation, RTL modules, deterministic safety logic, register and
+                    communication interfaces, PWM motor control, verification, and supporting
+                    software demonstrations.
+                </p>
+                <p>
+                    The project provided hands-on experience translating a machine-learning model
+                    into hardware-friendly operations and then integrating its inference output
+                    into a larger real-time digital control system.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>11</span><strong>TAKEAWAY</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>AI Perception Meets Deterministic Hardware</h2>
+                <div class="pipeline">
+                    <span>IMAGE</span><i>→</i><span>CNN</span><i>→</i>
+                    <span>CLASSIFICATION</span><i>→</i><span>SAFETY LOGIC</span>
+                    <i>→</i><span>PWM</span><i>→</i><span>ROBOT</span>
+                </div>
+                <p>
+                    The project demonstrates a systems-level approach to Edge AI: use a
+                    hardware-oriented neural network for perception while keeping safety-critical
+                    decisions deterministic and explicit in RTL. This connects TinyML,
+                    computer vision, digital VLSI, embedded control, and AI acceleration in one
+                    end-to-end architecture.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>12</span><strong>TECHNOLOGIES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Tools & Concepts</h2>
+                <div class="large-tags">
+                    <span>Verilog HDL</span><span>RTL Design</span><span>Vivado</span>
+                    <span>TensorFlow</span><span>Keras</span><span>Python</span>
+                    <span>OpenCV</span><span>NumPy</span><span>Pygame</span>
+                    <span>INT8 Quantization</span><span>CNNs</span><span>TinyML</span>
+                    <span>Edge AI</span><span>SPI</span><span>PWM</span>
+                    <span>Embedded Systems</span><span>FPGA / ASIC</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-resources">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>13</span><strong>RESOURCES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Project Evidence</h2>
+                <p>
+                    Supporting material can be connected here once the final project report,
+                    presentation, certificate, code repository, and demonstrations are added.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>PROJECT REPORT</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PROJECT PRESENTATION</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PYTHON / RTL DEMO</span><strong>Coming soon ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="project-nav">
+    <a href="transformer-self-attention.html">← Previous Project</a>
+    <a href="xgboost-inference-engine.html">Next Project →</a>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>

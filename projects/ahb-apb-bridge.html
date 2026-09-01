@@ -1,1 +1,512 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>AHB-to-APB Bridge Design | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">DIGITAL VLSI · SOC</p><h1>AHB-to-APB Bridge Design</h1><p>An RTL bridge translating transactions between the AMBA AHB and APB protocols, implementing address, data, control, and peripheral transaction sequencing.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>Maven Silicon</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Verilog</span><span>RTL</span><span>AMBA</span><span>FSM</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>An RTL bridge translating transactions between the AMBA AHB and APB protocols, implementing address, data, control, and peripheral transaction sequencing.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AHB to APB Bridge Design — Adhiraj Mandal.">
+    <title>AHB to APB Bridge Design | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+<section class="detail-hero">
+    <p class="detail-kicker">RTL DESIGN · VLSI · AMBA · VERIFICATION</p>
+    <h1>AHB to APB <span style="color:var(--accent)">Bridge Design.</span></h1>
+    <p>
+        A modular Verilog RTL protocol-conversion system that translates AMBA AHB transactions
+        into APB transfers using an AHB Slave Interface, an FSM-based APB Controller, and
+        top-level bridge integration.
+    </p>
+    <div class="detail-hero-meta">
+        <span>Maven Silicon Internship</span>
+        <span>Verilog HDL</span>
+        <span>ModelSim</span>
+        <span>AMBA AHB / APB</span>
+    </div>
+    <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+    <div class="detail-grid">
+        <aside class="detail-sidebar">
+            <div><span>PROJECT TYPE</span><strong>RTL Design & Verification</strong></div>
+            <div><span>BUS PROTOCOLS</span><strong>AMBA AHB → APB</strong></div>
+            <div><span>PRIMARY HDL</span><strong>Verilog</strong></div>
+            <div><span>CONTROL</span><strong>FSM-Based APB Controller</strong></div>
+            <div><span>VERIFICATION</span><strong>Testbenches + Waveform Analysis</strong></div>
+        </aside>
+        <article class="detail-body">
+            <div class="metric-callout-grid">
+                <div class="metric-callout"><strong>AHB</strong><span>HIGH-PERFORMANCE SIDE</span></div>
+                <div class="metric-callout"><strong>APB</strong><span>PERIPHERAL SIDE</span></div>
+                <div class="metric-callout"><strong>RTL</strong><span>MODULAR IMPLEMENTATION</span></div>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Bridging Two AMBA Protocols</h2>
+                <p>
+                    The AHB-to-APB Bridge enables communication between the AMBA
+                    <strong>Advanced High-performance Bus (AHB)</strong> and the
+                    <strong>Advanced Peripheral Bus (APB)</strong>. AHB is intended for
+                    higher-performance system communication, while APB provides a simpler
+                    interface for low-bandwidth peripherals.
+                </p>
+                <p>
+                    Because the protocols use different transfer mechanisms and timing
+                    requirements, the bridge captures the AHB transaction, converts its
+                    address/data/control information into APB-compatible signals, performs
+                    the APB transfer, and returns read data and completion information toward
+                    the AHB side.
+                </p>
+            </section>
+
+            <section>
+                <h2>Design Objective</h2>
+                <div class="feature-list">
+                    <div><strong>Receive AHB Transactions</strong><p>Identify valid AHB transfers and capture the required transaction information.</p></div>
+                    <div><strong>Convert the Protocol</strong><p>Translate AHB address, data and control information into an APB transfer.</p></div>
+                    <div><strong>Control APB Timing</strong><p>Generate the required APB SETUP and ACCESS sequencing.</p></div>
+                    <div><strong>Return Results</strong><p>Provide APB read data and transaction completion information back toward AHB.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>02</span><strong>ARCHITECTURE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Modular Bridge Architecture</h2>
+                <div class="architecture-stack">
+                    <div>AHB Bus</div><i>↓</i>
+                    <div class="accent-box">AHB Slave Interface</div><i>↓</i>
+                    <div>valid · address · data · control</div><i>↓</i>
+                    <div class="accent-box">APB Controller</div><i>↓</i>
+                    <div>PSEL · PADDR · PWDATA · PWRITE · PENABLE</div><i>↓</i>
+                    <div>APB Bus / Peripheral</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Three-Part Implementation</h2>
+                <div class="feature-list">
+                    <div><strong>AHB Slave Interface</strong><p>Detects valid AHB transfers and captures address, write data and control information.</p></div>
+                    <div><strong>APB Controller</strong><p>Converts the captured transaction into an APB transfer using FSM-based control.</p></div>
+                    <div><strong>AHB2APB Bridge</strong><p>Top-level integration module connecting the AHB-side and APB-side logic.</p></div>
+                    <div><strong>Verification Environment</strong><p>Dedicated testbenches and simulation waveforms validate block and system behavior.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>03</span><strong>AHB SLAVE INTERFACE</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Receiving the AHB Transaction</h2>
+                <p>
+                    The AHB Slave Interface forms the bridge's AHB-side endpoint. It determines
+                    whether the incoming transfer is valid and captures the information required
+                    by the APB Controller.
+                </p>
+            </section>
+
+            <section>
+                <h2>Key AHB Signals</h2>
+                <div class="large-tags">
+                    <span>Hclk</span><span>Hresetn</span><span>Hwrite</span>
+                    <span>Hreadyin</span><span>Htrans[1:0]</span>
+                    <span>Haddr[31:0]</span><span>Hwdata[31:0]</span>
+                </div>
+            </section>
+
+            <section>
+                <h2>Transaction Validity</h2>
+                <p>
+                    AHB transfer information is accepted when the transfer is valid, with
+                    `Htrans` identifying the appropriate transfer type and `Hreadyin`
+                    indicating that the incoming transfer can be accepted. Valid NONSEQ
+                    and SEQ transfers are captured and forwarded to the controller.
+                </p>
+                <div class="equation-box">
+                    <code>AHB VALID → capture address + write data + control</code>
+                    <code>AHB INVALID / IDLE → no APB transaction initiated</code>
+                </div>
+            </section>
+
+            <section>
+                <h2>Controller-Side Signals</h2>
+                <div class="large-tags">
+                    <span>valid</span><span>Haddr1</span><span>Haddr2</span>
+                    <span>Hwdata1</span><span>Hwdata2</span>
+                    <span>Hwritereg</span><span>tempselx</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>04</span><strong>APB CONTROLLER</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>FSM-Based Protocol Conversion</h2>
+                <p>
+                    The APB Controller is the central control block. It takes the captured
+                    AHB-side transaction and generates the corresponding APB address, data,
+                    read/write control and transfer-enable signals.
+                </p>
+                <div class="architecture-stack">
+                    <div>IDLE</div><i>valid</i>
+                    <div class="accent-box">SETUP</div><i>↓</i>
+                    <div class="accent-box">ACCESS</div><i>↓</i>
+                    <div>COMPLETE / RETURN</div><i>↓</i>
+                    <div>IDLE</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>APB Outputs</h2>
+                <div class="large-tags">
+                    <span>Pwrite</span><span>Penable</span><span>Pselx</span>
+                    <span>Paddr</span><span>Pwdata</span><span>Hreadyout</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>05</span><strong>APB TRANSFER</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>SETUP → ACCESS</h2>
+                <p>
+                    The APB Controller follows the required APB transfer sequence. During
+                    SETUP, the address, write data and control information are placed on the
+                    bus with the peripheral selected. During ACCESS, `PENABLE` is asserted.
+                </p>
+                <div class="flow-diagram">
+                    <div>SETUP · PSEL = 1 · PENABLE = 0</div><i>↓</i>
+                    <div>ACCESS · PSEL = 1 · PENABLE = 1</div><i>↓</i>
+                    <div>Transfer Completion</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>APB Signal Relationship</h2>
+                <div class="equation-box">
+                    <code>PADDR  → peripheral address</code>
+                    <code>PWDATA → write data</code>
+                    <code>PWRITE → read / write selection</code>
+                    <code>PSEL   → peripheral selection</code>
+                    <code>PENABLE → ACCESS phase enable</code>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>06</span><strong>WRITE PATH</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>AHB Write → APB Write</h2>
+                <div class="pipeline">
+                    <span>AHB MASTER</span><i>→</i>
+                    <span>AHB SLAVE</span><i>→</i>
+                    <span>CAPTURE</span><i>→</i>
+                    <span>APB SETUP</span><i>→</i>
+                    <span>APB ACCESS</span><i>→</i>
+                    <span>PERIPHERAL</span>
+                </div>
+                <p>
+                    For a write transfer, the bridge captures the AHB address and write data,
+                    carries the write direction into the APB controller, and drives `PADDR`,
+                    `PWDATA`, `PWRITE`, `PSEL` and `PENABLE` appropriately.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>07</span><strong>READ PATH</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>AHB Read → APB Read → AHB Read Data</h2>
+                <div class="pipeline">
+                    <span>AHB MASTER</span><i>→</i>
+                    <span>AHB SLAVE</span><i>→</i>
+                    <span>APB CONTROLLER</span><i>→</i>
+                    <span>APB PERIPHERAL</span>
+                </div>
+                <div class="pipeline" style="margin-top:18px">
+                    <span>PRDATA</span><i>→</i><span>CONTROLLER</span><i>→</i><span>HRDATA</span>
+                </div>
+                <p>
+                    For a read, the bridge generates an APB read transaction and receives
+                    `PRDATA` from the peripheral. The returned information is routed toward
+                    the AHB side as `HRDATA`.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>08</span><strong>TOP-LEVEL INTEGRATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>AHB2APB Bridge</h2>
+                <p>
+                    The top-level module integrates the AHB Slave Interface and APB Controller.
+                    Its primary responsibility is clean signal routing between the two blocks
+                    and the external bus interfaces.
+                </p>
+                <div class="feature-list">
+                    <div><strong>AHB Inputs</strong><p>Clock, reset, transfer type, address, write data and control signals.</p></div>
+                    <div><strong>Internal Interface</strong><p>Valid transaction, captured address/data and write-selection information.</p></div>
+                    <div><strong>APB Outputs</strong><p>Address, write data, read/write control, peripheral select and enable.</p></div>
+                    <div><strong>Return Path</strong><p>APB read data and completion information toward the AHB interface.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>09</span><strong>VERIFICATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Block-Level Verification</h2>
+                <div class="verification-flow">
+                    <div><span>AHB SLAVE INTERFACE</span><strong>Dedicated Testbench</strong><p>Valid/invalid transfers, read/write behavior, reset and signal capture.</p></div>
+                    <div class="verify-arrow">→</div>
+                    <div><span>APB CONTROLLER</span><strong>Dedicated Testbench</strong><p>FSM sequencing, APB controls, address/data and completion behavior.</p></div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Top-Level Verification</h2>
+                <p>
+                    After block-level testing, the integrated bridge was exercised by applying
+                    AHB-side transactions and observing the corresponding APB-side behavior.
+                    Simulation waveforms were used to inspect both signal correctness and
+                    transaction timing.
+                </p>
+                <div class="flow-diagram">
+                    <div>AHB Test Stimulus</div><i>↓</i>
+                    <div>AHB2APB Bridge</div><i>↓</i>
+                    <div>APB Signal Response</div><i>↓</i>
+                    <div>Waveform Analysis</div>
+                </div>
+            </section>
+
+            <section>
+                <h2>Verification Focus</h2>
+                <div class="large-tags">
+                    <span>NONSEQ Transfers</span><span>SEQ Transfers</span>
+                    <span>Read Transactions</span><span>Write Transactions</span>
+                    <span>Reset</span><span>PSEL Generation</span>
+                    <span>PENABLE Sequencing</span><span>FSM Transitions</span>
+                    <span>HRDATA</span><span>HREADYOUT</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>10</span><strong>SIMULATION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>ModelSim Waveform Analysis</h2>
+                <p>
+                    ModelSim was used for RTL simulation and waveform-level debugging. The
+                    analysis focused on verifying the temporal relationship between the
+                    captured AHB transaction and the generated APB SETUP and ACCESS phases.
+                </p>
+                <div class="large-tags">
+                    <span>Hclk</span><span>Hresetn</span><span>Htrans</span>
+                    <span>Hwrite</span><span>Haddr</span><span>Hwdata</span>
+                    <span>Hreadyin</span><span>Hreadyout</span><span>Hrdata</span>
+                    <span>Paddr</span><span>Pwdata</span><span>Pwrite</span>
+                    <span>Pselx</span><span>Penable</span><span>Prdata</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>11</span><strong>SYNTHESIS</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>From RTL to Hardware</h2>
+                <p>
+                    After functional verification, the RTL can be taken through a synthesis
+                    flow to evaluate logic utilization, register usage, timing behavior and
+                    critical paths. The final portfolio page should use the actual synthesis
+                    report values rather than estimated numbers.
+                </p>
+                <div class="feature-list">
+                    <div><strong>Logic Utilization</strong><p>Actual LUT/logic usage from the selected synthesis target.</p></div>
+                    <div><strong>Register Usage</strong><p>Flip-flop/register utilization reported by the synthesis tool.</p></div>
+                    <div><strong>Timing</strong><p>Clock constraint, critical path and achieved timing from the actual report.</p></div>
+                    <div><strong>Implementation Evidence</strong><p>Synthesis screenshots or report excerpts can be attached here later.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>12</span><strong>ENGINEERING CHALLENGES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <div class="feature-list">
+                    <div><strong>Protocol Translation</strong><p>Understanding the different transaction mechanisms and translating AHB behavior into APB timing.</p></div>
+                    <div><strong>FSM Sequencing</strong><p>Ensuring SETUP and ACCESS control signals occur in the required order.</p></div>
+                    <div><strong>RTL Debugging</strong><p>Resolving Verilog syntax, interface, signal-width and state-machine issues through simulation.</p></div>
+                    <div><strong>Module Integration</strong><p>Connecting independently developed blocks through a clean top-level interface.</p></div>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>13</span><strong>MY CONTRIBUTION</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>What I Built</h2>
+                <p>
+                    Designed and implemented the AHB Slave Interface, FSM-based APB Controller,
+                    and top-level AHB2APB Bridge integration in Verilog. Developed dedicated
+                    testbenches for block-level verification and exercised the integrated
+                    bridge through simulation and waveform analysis.
+                </p>
+                <p>
+                    The project gave me practical experience translating protocol specifications
+                    into synthesizable RTL and following the complete flow from module design
+                    through verification and hardware-oriented analysis.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-band">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>14</span><strong>TAKEAWAY</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Protocol-Level Thinking in RTL</h2>
+                <div class="pipeline">
+                    <span>PROTOCOL SPEC</span><i>→</i>
+                    <span>RTL ARCHITECTURE</span><i>→</i>
+                    <span>FSM CONTROL</span><i>→</i>
+                    <span>SIMULATION</span><i>→</i>
+                    <span>VERIFICATION</span>
+                </div>
+                <p>
+                    The central lesson from the project was that robust RTL design is not only
+                    about writing synthesizable code; it requires understanding protocol timing,
+                    defining clean module boundaries, designing deterministic control logic,
+                    and validating behavior through simulation.
+                </p>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>15</span><strong>TECHNOLOGIES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Tools & Concepts</h2>
+                <div class="large-tags">
+                    <span>Verilog HDL</span><span>ModelSim</span>
+                    <span>Quartus Prime</span><span>Vivado</span>
+                    <span>AMBA AHB</span><span>AMBA APB</span>
+                    <span>RTL Design</span><span>FSM Design</span>
+                    <span>Digital VLSI</span><span>Simulation</span>
+                    <span>Waveform Analysis</span><span>Synthesis</span>
+                    <span>SoC Interconnect</span>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="detail-content detail-resources">
+    <div class="detail-grid">
+        <aside class="detail-sidebar"><div><span>16</span><strong>RESOURCES</strong></div></aside>
+        <article class="detail-body">
+            <section>
+                <h2>Project Evidence</h2>
+                <p>
+                    The final portfolio can connect the actual internship/project report,
+                    presentation, certificate, RTL repository, simulation screenshots and
+                    synthesis evidence here.
+                </p>
+                <div class="resource-list">
+                    <a href="#" class="resource-item"><span>PROJECT / INTERNSHIP REPORT</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>PRESENTATION</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+                    <a href="#" class="resource-item"><span>SIMULATION / WAVEFORM GALLERY</span><strong>Coming soon ↗</strong></a>
+                </div>
+            </section>
+        </article>
+    </div>
+</section>
+
+<section class="project-nav">
+    <a href="ai-asic-design-suite.html">← Previous Project</a>
+    <a href="disease-predictor.html">Next Project →</a>
+</section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>

@@ -1,1 +1,495 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Microwave Oven Using PIC16F877A | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">EMBEDDED SYSTEMS</p><h1>Microwave Oven Using PIC16F877A</h1><p>A real-time microwave oven controller built with PIC16F877A and Embedded C, featuring keypad/LCD interaction, timers, interrupts, multiple cooking modes, and FSM-based control.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>Emertxe</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Embedded C</span><span>PIC16F877A</span><span>MPLAB X</span><span>PICSimLab</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>A real-time microwave oven controller built with PIC16F877A and Embedded C, featuring keypad/LCD interaction, timers, interrupts, multiple cooking modes, and FSM-based control.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Real-Time Microwave Oven Control System using PIC16F877A — Adhiraj Mandal.">
+<title>Microwave Oven — Embedded Systems | Adhiraj Mandal</title>
+<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+<header class="navbar">
+  <div class="nav-container">
+    <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+    <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+  </div>
+</header>
+
+<main class="detail-main">
+<section class="detail-hero">
+  <p class="detail-kicker">EMBEDDED SYSTEMS · EMBEDDED C · MICROCONTROLLERS · FSM</p>
+  <h1>Microwave Oven <span style="color:var(--accent)">— Embedded Systems.</span></h1>
+  <p>
+    A real-time microwave oven control system developed with the PIC16F877A and Embedded C,
+    integrating keypad input, CLCD output, Timer2 interrupts, cooking modes, preheating,
+    pause/resume/stop control, fan control, and buzzer alerts through an FSM-based firmware architecture.
+  </p>
+  <div class="detail-hero-meta">
+    <span>Emertxe Embedded Systems Internship</span><span>PIC16F877A</span>
+    <span>Embedded C</span><span>MPLAB X</span><span>PICSimLab</span>
+  </div>
+  <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+</section>
+
+<section class="detail-content detail-highlight-section">
+<div class="detail-grid">
+<aside class="detail-sidebar">
+  <div><span>PROJECT TYPE</span><strong>Real-Time Embedded Application</strong></div>
+  <div><span>CONTROLLER</span><strong>PIC16F877A</strong></div>
+  <div><span>INPUT</span><strong>Matrix Keypad</strong></div>
+  <div><span>DISPLAY</span><strong>4-bit Character LCD</strong></div>
+  <div><span>TIMING</span><strong>Timer2 + Interrupts</strong></div>
+</aside>
+<article class="detail-body">
+<div class="metric-callout-grid">
+  <div class="metric-callout"><strong>4</strong><span>COOKING MODES</span></div>
+  <div class="metric-callout"><strong>FSM</strong><span>CONTROL ARCHITECTURE</span></div>
+  <div class="metric-callout"><strong>RT</strong><span>REAL-TIME CONTROL</span></div>
+</div>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>01</span><strong>OVERVIEW</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>From Peripheral Drivers to a Complete Embedded System</h2>
+<p>
+The Microwave Oven project was developed during the <strong>Emertxe Embedded Systems Internship</strong>
+using the PIC16F877A microcontroller and Embedded C. The system integrates multiple hardware
+peripherals and firmware modules into a single real-time application.
+</p>
+<p>
+A matrix keypad provides user input, a character LCD presents the user interface, Timer2
+interrupts generate the timing base, and output logic controls the fan and buzzer. An
+FSM coordinates the microwave's operating modes and state transitions.
+</p>
+</section>
+<section>
+<h2>System at a Glance</h2>
+<div class="pipeline">
+<span>KEYPAD</span><i>→</i><span>PIC16F877A</span><i>→</i><span>FSM</span><i>→</i>
+<span>CLCD / TIMER / OUTPUTS</span><i>→</i><span>MICROWAVE BEHAVIOR</span>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>02</span><strong>OBJECTIVE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Objective</h2>
+<p>
+The goal was to apply embedded C, microcontroller programming, peripheral interfacing,
+timers, interrupts, FSM design, and modular firmware architecture to develop a complete
+microwave oven control application.
+</p>
+</section>
+<section>
+<div class="feature-list">
+<div><strong>Microcontroller Programming</strong><p>Develop firmware for the PIC16F877A and coordinate its peripherals.</p></div>
+<div><strong>Peripheral Interfacing</strong><p>Integrate matrix keypad and character LCD interfaces.</p></div>
+<div><strong>Real-Time Timing</strong><p>Use Timer2 interrupts to create periodic software timing events.</p></div>
+<div><strong>FSM Control</strong><p>Represent microwave modes and transitions using deterministic application states.</p></div>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>03</span><strong>FEATURES</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Four Operating Modes</h2>
+<div class="feature-list">
+<div><strong>Macro Mode</strong><p>Displays configured power and accepts cooking time before starting the countdown.</p></div>
+<div><strong>Grill Mode</strong><p>Allows direct cooking-time entry and starts the cooking process after confirmation.</p></div>
+<div><strong>Convection Mode</strong><p>Accepts temperature, performs preheating, then accepts cooking time and starts cooking.</p></div>
+<div><strong>Quick Start</strong><p>Starts with a default 30-second duration and supports additional 30-second increments.</p></div>
+</div>
+</section>
+<section>
+<h2>User Controls</h2>
+<div class="large-tags">
+<span>1 · Macro</span><span>2 · Grill</span><span>3 · Convection</span>
+<span>4 · Start / Resume / +30 sec</span><span>5 · Pause</span><span>6 · Stop</span>
+<span>0–9 · Digit Entry</span><span>* · Clear</span><span># · Confirm / Enter</span>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>04</span><strong>SYSTEM ARCHITECTURE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>PIC16F877A as the Central Controller</h2>
+<div class="architecture-stack">
+<div>Matrix Keypad · User Input</div><i>↓</i>
+<div class="accent-box">PIC16F877A Microcontroller</div><i>↓</i>
+<div>FSM + Application Logic</div><i>↓</i>
+<div>CLCD · Timer2/ISR · Output Control</div><i>↓</i>
+<div>Fan + Buzzer</div>
+</div>
+</section>
+<section>
+<h2>Hardware Components</h2>
+<div class="large-tags">
+<span>Matrix Keypad</span><span>PIC16F877A</span><span>Character LCD</span>
+<span>Timer2</span><span>Fan</span><span>Buzzer</span><span>PICGenios Board</span>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>05</span><strong>CLCD INTERFACE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Character LCD in 4-bit Mode</h2>
+<p>
+The CLCD provides the primary user interface, displaying the power-on message, menu,
+time and temperature configuration, preheating status, cooking countdown, and control
+instructions.
+</p>
+</section>
+<section>
+<h2>Dedicated Driver</h2>
+<div class="equation-box">
+<code>clcd.c</code><code>clcd.h</code>
+<code>init_clcd()</code><code>clcd_print()</code><code>clcd_putch()</code>
+</div>
+<p>
+Using 4-bit mode reduces the number of microcontroller pins required for LCD communication
+while keeping the interface suitable for the application.
+</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>06</span><strong>MATRIX KEYPAD</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Row–Column Scanning</h2>
+<p>
+The keypad driver scans rows and reads columns to determine which key is pressed.
+The implementation supports both continuous level detection and state-based key-press
+detection so a held key can be treated as a single user event.
+</p>
+<div class="flow-diagram">
+<div>Activate Row</div><i>↓</i><div>Read Columns</div><i>↓</i>
+<div>Identify Key</div><i>↓</i><div>Return Key State</div>
+</div>
+</section>
+<section>
+<h2>Driver Interface</h2>
+<div class="equation-box"><code>init_matrix_keypad()</code><code>read_matrix_keypad()</code></div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>07</span><strong>TIMERS & INTERRUPTS</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Timer2 as the Real-Time Base</h2>
+<p>
+Timer2 generates periodic interrupts. Software timing flags are then used by the
+application to create one-second countdown events and periodic UI blinking events.
+</p>
+<div class="equation-box">
+<code>Timer2 interrupt → sec_flag / blink_flag → application timing</code>
+<code>if (sec_flag) { sec_flag = 0; cook_remaining_sec--; }</code>
+</div>
+</section>
+<section>
+<h2>Why Interrupt-Driven Timing?</h2>
+<p>
+The timing mechanism allows countdown processing to occur independently of the normal
+application flow instead of relying on blocking delays for every elapsed second.
+</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>08</span><strong>FSM ARCHITECTURE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Microwave State Machine</h2>
+<div class="architecture-stack">
+<div>POWER ON</div><i>↓</i><div class="accent-box">MENU</div><i>↓</i>
+<div>MACRO / GRILL / CONVECTION / START</div><i>↓</i>
+<div>CONFIGURATION / PREHEAT</div><i>↓</i><div class="accent-box">COOKING</div>
+</div>
+</section>
+<section>
+<h2>Pause / Resume / Stop</h2>
+<div class="state-flow">
+<span>COOKING</span><i>→</i><span>PAUSE</span><i>→</i><span>COOKING</span>
+<i>·</i><span>STOP</span><i>→</i><span>MENU</span>
+</div>
+</section>
+<section>
+<h2>Why FSM?</h2>
+<div class="feature-list">
+<div><strong>Clear State Separation</strong><p>Each operating condition has a defined responsibility.</p></div>
+<div><strong>Predictable Transitions</strong><p>User actions drive explicit transitions between states.</p></div>
+<div><strong>Easier Debugging</strong><p>Behavior can be traced through a finite set of application states.</p></div>
+<div><strong>Extensibility</strong><p>Additional modes or behaviors can be introduced as new states and transitions.</p></div>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>09</span><strong>COOKING FLOWS</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Macro Mode</h2>
+<div class="pipeline"><span>MENU</span><i>→</i><span>MACRO</span><i>→</i><span>SET TIME</span><i>→</i><span>COOKING</span></div>
+</section>
+<section>
+<h2>Grill Mode</h2>
+<div class="pipeline"><span>MENU</span><i>→</i><span>GRILL</span><i>→</i><span>SET TIME</span><i>→</i><span>COOKING</span></div>
+</section>
+<section>
+<h2>Convection Mode</h2>
+<div class="pipeline"><span>MENU</span><i>→</i><span>CONVECTION</span><i>→</i><span>SET TEMP</span><i>→</i><span>PREHEAT</span><i>→</i><span>SET TIME</span><i>→</i><span>COOKING</span></div>
+</section>
+<section>
+<h2>Quick Start</h2>
+<div class="pipeline"><span>START</span><i>→</i><span>30 SEC</span><i>→</i><span>COOKING</span><i>→</i><span>+30 SEC</span></div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>10</span><strong>TIME & TEMPERATURE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Four-Digit Time Entry</h2>
+<p>
+Cooking time is represented internally as four digits in <strong>MMSS</strong> format.
+For example, entering 1 → 2 → 3 → 4 produces 12:34.
+</p>
+<div class="equation-box centered-equation"><code>Total Seconds = Minutes × 60 + Seconds</code></div>
+</section>
+<section>
+<h2>Convection Preheating</h2>
+<p>
+Convection mode adds a temperature configuration and preheating stage before the cooking
+time is entered. The fan is activated during preheating.
+</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>11</span><strong>OUTPUT CONTROL</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Fan Control</h2>
+<div class="feature-list">
+<div><strong>Preheating</strong><p>Fan activated while the convection system is preheating.</p></div>
+<div><strong>Cooking</strong><p>Fan remains active during cooking.</p></div>
+<div><strong>Pause</strong><p>Fan is deactivated while the system is paused.</p></div>
+<div><strong>Completion</strong><p>Fan is deactivated after the cooking operation finishes.</p></div>
+</div>
+</section>
+<section>
+<h2>Buzzer Feedback</h2>
+<p>The buzzer provides user feedback, including a completion alert when cooking finishes.</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>12</span><strong>FIRMWARE ARCHITECTURE</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Modular Firmware</h2>
+<div class="architecture-stack">
+<div>main.c</div><i>↓</i>
+<div>Application: micro_oven.c / micro_oven.h</div><i>↓</i>
+<div>CLCD Driver · matrix keypad Driver · Timer Driver</div>
+</div>
+</section>
+<section>
+<h2>Project Structure</h2>
+<div class="equation-box">
+<code>microwaveoven.X/</code>
+<code>├── main.c</code>
+<code>├── clcd.c / clcd.h</code>
+<code>├── matrix_keypad.c / matrix_keypad.h</code>
+<code>├── timers.c / timers.h</code>
+<code>└── micro_oven.c / micro_oven.h</code>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>13</span><strong>DEVELOPMENT FLOW</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>From C Fundamentals to Embedded Integration</h2>
+<div class="pipeline">
+<span>C PROGRAMMING</span><i>→</i><span>EMBEDDED FUNDAMENTALS</span><i>→</i>
+<span>PERIPHERAL DRIVERS</span><i>→</i><span>FSM</span><i>→</i>
+<span>INTEGRATION</span><i>→</i><span>SIMULATION</span>
+</div>
+</section>
+<section>
+<h2>Development Tools</h2>
+<div class="large-tags">
+<span>MPLAB X IDE</span><span>XC8 Compiler</span><span>PICSimLab</span>
+<span>PICGenios</span><span>Embedded C</span>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>14</span><strong>CHALLENGES & SOLUTIONS</strong></div></aside>
+<article class="detail-body">
+<section>
+<div class="feature-list">
+<div><strong>Multiple Operating Modes</strong><p>Used an FSM to separate operating conditions and define explicit transitions.</p></div>
+<div><strong>Real-Time Countdown</strong><p>Used Timer2 interrupt-driven timing and software flags.</p></div>
+<div><strong>Keypad Handling</strong><p>Used state-change based detection so held keys can be treated as single events.</p></div>
+<div><strong>Peripheral Integration</strong><p>Used modular drivers to combine CLCD, keypad, timer and output control with application logic.</p></div>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>15</span><strong>MY CONTRIBUTION</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>What I Built</h2>
+<p>
+Developed the microwave oven firmware around the PIC16F877A, integrating the keypad,
+CLCD, timer/interrupt system, fan, buzzer, and application-level FSM. Implemented the
+four cooking modes, time/temperature entry, countdown, convection preheating,
+pause/resume/stop behavior, and quick-start operation.
+</p>
+<p>
+The work brought together peripheral drivers and application logic into a modular,
+real-time embedded system and provided hands-on experience with microcontroller
+programming, hardware-software interfacing, and deterministic state-based control.
+</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-band">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>16</span><strong>TAKEAWAY</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Building a Real-Time Embedded Application</h2>
+<div class="pipeline">
+<span>INPUT</span><i>→</i><span>FSM</span><i>→</i><span>TIMING</span><i>→</i>
+<span>PERIPHERALS</span><i>→</i><span>OUTPUT CONTROL</span>
+</div>
+<p>
+The project demonstrated how low-level embedded concepts become a complete application:
+user input is captured through hardware interfaces, application behavior is organized
+through an FSM, periodic events are generated using interrupts, and outputs are controlled
+according to the current system state.
+</p>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>17</span><strong>TECHNOLOGIES</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Tools & Concepts</h2>
+<div class="large-tags">
+<span>Embedded C</span><span>C Programming</span><span>PIC16F877A</span>
+<span>PICGenios</span><span>MPLAB X IDE</span><span>XC8 Compiler</span>
+<span>PICSimLab</span><span>Finite State Machine</span><span>Timers</span>
+<span>Interrupts</span><span>CLCD</span><span>Matrix Keypad</span>
+<span>GPIO</span><span>Polling</span><span>Real-Time Embedded Systems</span>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="detail-content detail-resources">
+<div class="detail-grid">
+<aside class="detail-sidebar"><div><span>18</span><strong>RESOURCES</strong></div></aside>
+<article class="detail-body">
+<section>
+<h2>Project Evidence</h2>
+<p>
+Supporting material can be connected here when the internship report, presentation,
+certificate, source code, simulation screenshots, and demo video are added.
+</p>
+<div class="resource-list">
+<a href="#" class="resource-item"><span>INTERNSHIP / PROJECT REPORT</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>PRESENTATION</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>INTERNSHIP CERTIFICATE</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>GITHUB REPOSITORY</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>PICSIMLAB / PROJECT DEMO</span><strong>Coming soon ↗</strong></a>
+<a href="#" class="resource-item"><span>DEMO VIDEO</span><strong>Coming soon ↗</strong></a>
+</div>
+</section>
+</article>
+</div>
+</section>
+
+<section class="project-nav">
+<a href="image-classification.html">← Previous Project</a>
+<a href="../index.html#projects">Back to Projects →</a>
+</section>
+</main>
+
+<footer>
+<div class="footer-container">
+<p>© 2026 Adhiraj Mandal</p>
+<p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+</div>
+</footer>
+</body>
+</html>

@@ -1,1 +1,551 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Transformer Self-Attention Accelerator | Adhiraj Mandal</title><link rel="stylesheet" href="../style.css"></head><body><header class="navbar"><div class="nav-container"><a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a><a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a></div></header><main class="detail-main"><section class="detail-hero"><p class="detail-kicker">AI HARDWARE · COMPUTER ARCHITECTURE</p><h1>Transformer Self-Attention Accelerator</h1><p>Hardware acceleration of Transformer self-attention using a 16×16 systolic array with 256 processing elements and fixed-point MAC datapaths.</p><a href="../index.html#projects" class="back-link">← Back to Projects</a></section><section class="detail-content"><div class="detail-grid"><aside class="detail-sidebar"><div><span>CONTEXT</span><strong>IIIT Bangalore</strong></div><div><span>TECHNOLOGIES</span><div class="project-tags"><span>Verilog</span><span>RTL</span><span>Systolic Array</span><span>AI Hardware</span></div></div></aside><article class="detail-body"><section><h2>Overview</h2><p>Hardware acceleration of Transformer self-attention using a 16×16 systolic array with 256 processing elements and fixed-point MAC datapaths.</p></section><section><h2>Technical Focus</h2><p>This page is structured to document the architecture, implementation decisions, verification approach, results, and personal contribution behind the project. Detailed evidence can be added here as the project-specific material is integrated.</p></section><section><h2>Architecture & Implementation</h2><div class="placeholder-box">Architecture diagrams, RTL structure, datapath details, and implementation evidence will be presented here.</div></section><section><h2>Verification & Results</h2><div class="placeholder-box">Simulation waveforms, validation results, measurements, screenshots, and other evidence can be added here.</div></section><section><h2>My Contribution</h2><p>The project page will distinguish your individual engineering contribution from the broader internship or project context.</p></section><section><h2>Links</h2><p>GitHub, demo, publication, or other relevant external resources can be connected here later.</p></section></article></div></section></main><footer><div class="footer-container"><p>© 2026 Adhiraj Mandal</p><p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p></div></footer></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Transformer Self-Attention Accelerator — a 16×16 systolic-array RTL architecture by Adhiraj Mandal.">
+    <title>Transformer Self-Attention Accelerator | Adhiraj Mandal</title>
+    <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+<header class="navbar">
+    <div class="nav-container">
+        <a href="../index.html" class="logo">Adhiraj Mandal<span>.</span></a>
+        <a href="../index.html#projects" class="back-link" style="margin:0">← Back to Projects</a>
+    </div>
+</header>
+
+<main class="detail-main">
+
+    <!-- HERO -->
+    <section class="detail-hero">
+        <p class="detail-kicker">AI HARDWARE · COMPUTER ARCHITECTURE · RTL</p>
+
+        <h1>
+            Transformer Self-Attention
+            <span style="color:var(--accent)">Accelerator.</span>
+        </h1>
+
+        <p>
+            A Verilog-based hardware architecture for accelerating the computationally
+            intensive matrix operations underlying Transformer self-attention using a
+            16×16 systolic array and 256 processing elements.
+        </p>
+
+        <div class="detail-hero-meta">
+            <span>IIIT Bangalore</span>
+            <span>AI Hardware / VLSI</span>
+            <span>Transformer Acceleration</span>
+        </div>
+
+        <a href="../index.html#projects" class="back-link">← Back to Projects</a>
+    </section>
+
+    <!-- AT A GLANCE -->
+    <section class="detail-content detail-highlight-section">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div>
+                    <span>PROJECT TYPE</span>
+                    <strong>AI Accelerator Architecture</strong>
+                </div>
+                <div>
+                    <span>IMPLEMENTATION</span>
+                    <strong>Verilog RTL + Python</strong>
+                </div>
+                <div>
+                    <span>ARCHITECTURE</span>
+                    <strong>16×16 Systolic Array</strong>
+                </div>
+                <div>
+                    <span>PROCESSING ELEMENTS</span>
+                    <strong>256 PEs</strong>
+                </div>
+                <div>
+                    <span>FOCUS</span>
+                    <strong>Self-Attention Matrix Computation</strong>
+                </div>
+            </aside>
+
+            <article class="detail-body">
+                <div class="metric-callout-grid">
+                    <div class="metric-callout">
+                        <strong>16×16</strong>
+                        <span>SYSTOLIC ARRAY</span>
+                    </div>
+                    <div class="metric-callout">
+                        <strong>256</strong>
+                        <span>PROCESSING ELEMENTS</span>
+                    </div>
+                    <div class="metric-callout">
+                        <strong>MAC</strong>
+                        <span>CORE COMPUTE</span>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <!-- OVERVIEW -->
+    <section class="detail-content">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>01</span><strong>OVERVIEW</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Overview</h2>
+                    <p>
+                        Transformer self-attention relies heavily on matrix multiplication and
+                        dot-product operations. This project explored how those computational
+                        kernels can be mapped from an algorithmic representation into a
+                        dedicated RTL hardware architecture.
+                    </p>
+                    <p>
+                        The central design uses a regular 16×16 systolic array containing
+                        256 processing elements. Each processing element performs
+                        multiply-accumulate computation while data propagates through
+                        neighboring elements, exposing parallelism and local data reuse.
+                    </p>
+                    <p>
+                        The work therefore sits at the intersection of machine learning,
+                        computer architecture, and digital VLSI: translating a modern AI
+                        workload into a structured hardware datapath.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Problem & Motivation</h2>
+                    <p>
+                        Self-attention contains computationally intensive matrix operations,
+                        including the formation of query, key, and value projections and the
+                        matrix products used in attention. Executing these operations directly
+                        on general-purpose processors can involve substantial computation and
+                        data movement.
+                    </p>
+                    <p>
+                        The goal was to investigate a hardware architecture that could exploit
+                        the inherent parallelism of these operations through dedicated
+                        processing elements and structured dataflow.
+                    </p>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- SELF ATTENTION -->
+    <section class="detail-content detail-band">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>02</span><strong>WORKLOAD</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Mapping Self-Attention to Hardware</h2>
+                    <p>
+                        The Transformer self-attention mechanism can be expressed as:
+                    </p>
+
+                    <div class="equation-box">
+                        <code>Q = XWQ</code>
+                        <code>K = XWK</code>
+                        <code>V = XWV</code>
+                        <code>Attention(Q,K,V) = Softmax(QKᵀ / √d<sub>k</sub>)V</code>
+                    </div>
+
+                    <p>
+                        The accelerator focuses on the matrix-multiplication and dot-product
+                        kernels that dominate the computational workload. These operations
+                        are particularly suitable for a spatially distributed MAC architecture.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>End-to-End Computational Flow</h2>
+
+                    <div class="flow-diagram">
+                        <div>Input Embeddings</div>
+                        <i>↓</i>
+                        <div>Linear Projection</div>
+                        <i>↓</i>
+                        <div class="flow-split">
+                            <span>Q</span>
+                            <span>K</span>
+                            <span>V</span>
+                        </div>
+                        <i>↓</i>
+                        <div>Matrix Operations</div>
+                        <i>↓</i>
+                        <div>Attention Output</div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section class="detail-content">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>03</span><strong>ARCHITECTURE</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>16×16 Systolic Array</h2>
+                    <p>
+                        The core architecture is a 16×16 systolic array. The 256 processing
+                        elements form a regular grid through which operands propagate and
+                        partial results accumulate.
+                    </p>
+
+                    <div class="array-diagram" aria-label="Conceptual 16 by 16 systolic array">
+                        <div class="array-title">16 × 16 · 256 PROCESSING ELEMENTS</div>
+                        <div class="array-grid">
+                            <span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span>
+                            <span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span>
+                            <span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span>
+                            <span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span><span>PE</span>
+                        </div>
+                        <div class="array-note">Representative PE grid · each cell performs MAC computation</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Processing Element</h2>
+                    <p>
+                        Each processing element performs a multiply-accumulate operation:
+                    </p>
+
+                    <div class="equation-box centered-equation">
+                        <code>ACC′ = ACC + A × B</code>
+                    </div>
+
+                    <p>
+                        Partial results are accumulated locally while operands move through
+                        the array. This spatial organization supports parallel matrix
+                        computation and reduces reliance on a centralized arithmetic unit.
+                    </p>
+                </section>
+
+                <section>
+                    <h2>Why a Systolic Architecture?</h2>
+                    <div class="feature-list">
+                        <div>
+                            <strong>Parallelism</strong>
+                            <p>Many MAC operations can execute concurrently across the PE grid.</p>
+                        </div>
+                        <div>
+                            <strong>Local Dataflow</strong>
+                            <p>Operands and partial results move between neighboring processing elements.</p>
+                        </div>
+                        <div>
+                            <strong>Data Reuse</strong>
+                            <p>Structured propagation enables reuse of operands during matrix computation.</p>
+                        </div>
+                        <div>
+                            <strong>Regular Hardware</strong>
+                            <p>The repeated PE structure provides a regular architecture suited to RTL implementation.</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- IMPLEMENTATION -->
+    <section class="detail-content detail-band">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>04</span><strong>IMPLEMENTATION</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>RTL Datapath</h2>
+                    <p>
+                        The accelerator was developed as a modular Verilog RTL architecture
+                        built around the PE/MAC datapath, input storage, output registers,
+                        and control logic.
+                    </p>
+
+                    <div class="architecture-stack">
+                        <div>Input Interface</div>
+                        <i>↓</i>
+                        <div>Input Buffers / Registers</div>
+                        <i>↓</i>
+                        <div class="accent-box">16×16 Systolic Array · 256 PEs</div>
+                        <i>↓</i>
+                        <div>MAC Accumulators</div>
+                        <i>↓</i>
+                        <div>Output Registers</div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Control Architecture</h2>
+                    <p>
+                        Datapath and control are separated so that computation and sequencing
+                        can be reasoned about independently. The controller coordinates
+                        operand loading, computation, propagation, accumulation, output
+                        collection, and completion signaling.
+                    </p>
+
+                    <div class="state-flow">
+                        <span>IDLE</span><i>→</i>
+                        <span>LOAD</span><i>→</i>
+                        <span>COMPUTE</span><i>→</i>
+                        <span>DRAIN</span><i>→</i>
+                        <span>OUTPUT</span><i>→</i>
+                        <span>DONE</span>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Numerical Representation</h2>
+                    <p>
+                        The design uses hardware-oriented fixed-point/quantized arithmetic
+                        concepts to reduce the cost of numerical operations relative to
+                        floating-point implementations. Precision, accumulator width,
+                        signed arithmetic, and truncation/quantization are architectural
+                        considerations that affect both numerical behavior and hardware cost.
+                    </p>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- VERIFICATION -->
+    <section class="detail-content">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>05</span><strong>VERIFICATION</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Reference-Based Verification</h2>
+                    <p>
+                        Verification uses an independent Python computation as a reference
+                        for the relevant matrix operations. The resulting expected values
+                        are compared against the RTL simulation outputs.
+                    </p>
+
+                    <div class="verification-flow">
+                        <div>
+                            <span>REFERENCE</span>
+                            <strong>Python Model</strong>
+                            <p>Expected computational result</p>
+                        </div>
+                        <div class="verify-arrow">↔</div>
+                        <div>
+                            <span>IMPLEMENTATION</span>
+                            <strong>Verilog RTL</strong>
+                            <p>Simulation result</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section>
+                    <h2>Verification Scope</h2>
+                    <ul>
+                        <li>Processing-element arithmetic</li>
+                        <li>MAC accumulation</li>
+                        <li>Systolic data propagation</li>
+                        <li>Matrix computation behavior</li>
+                        <li>Control FSM sequencing</li>
+                        <li>Output timing and capture</li>
+                    </ul>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- DESIGN CHALLENGES -->
+    <section class="detail-content detail-band">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>06</span><strong>DESIGN TRADE-OFFS</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Architectural Considerations</h2>
+
+                    <div class="feature-list">
+                        <div>
+                            <strong>Parallelism vs. Area</strong>
+                            <p>More processing elements can increase throughput potential while increasing hardware and routing cost.</p>
+                        </div>
+                        <div>
+                            <strong>Precision vs. Hardware Cost</strong>
+                            <p>Wider operands and accumulators improve numerical range but require more hardware resources.</p>
+                        </div>
+                        <div>
+                            <strong>Data Movement</strong>
+                            <p>Efficient operand reuse and local communication are important because memory movement can become a bottleneck.</p>
+                        </div>
+                        <div>
+                            <strong>Control Complexity</strong>
+                            <p>Hundreds of processing elements must remain coordinated during loading, computation, draining, and output.</p>
+                        </div>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- CONTRIBUTION -->
+    <section class="detail-content">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>07</span><strong>MY CONTRIBUTION</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>What I Built</h2>
+                    <p>
+                        Designed and verified a Verilog-based hardware accelerator architecture
+                        for Transformer self-attention, mapping matrix-multiplication workloads
+                        onto a 16×16 systolic array of processing elements with parallel MAC
+                        computation and structured dataflow.
+                    </p>
+                    <p>
+                        Developed the RTL datapath and control architecture and used
+                        Python-based reference computation and RTL simulation to validate
+                        functional behavior.
+                    </p>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- TAKEAWAY -->
+    <section class="detail-content detail-band">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>08</span><strong>TAKEAWAY</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>From AI Algorithm to Hardware Architecture</h2>
+                    <div class="pipeline">
+                        <span>AI Algorithm</span>
+                        <i>→</i>
+                        <span>Self-Attention</span>
+                        <i>→</i>
+                        <span>Matrix Operations</span>
+                        <i>→</i>
+                        <span>Systolic Array</span>
+                        <i>→</i>
+                        <span>RTL Hardware</span>
+                        <i>→</i>
+                        <span>Verification</span>
+                    </div>
+                    <p>
+                        The project demonstrates how the computational structure of a modern
+                        Transformer workload can be transformed into a specialized parallel
+                        hardware architecture, connecting machine learning concepts with
+                        computer architecture and digital VLSI design.
+                    </p>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- TECHNOLOGIES -->
+    <section class="detail-content">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>09</span><strong>TECHNOLOGIES</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Tools & Concepts</h2>
+                    <div class="large-tags">
+                        <span>Verilog HDL</span>
+                        <span>RTL Design</span>
+                        <span>Python</span>
+                        <span>Transformer</span>
+                        <span>Self-Attention</span>
+                        <span>Systolic Arrays</span>
+                        <span>Processing Elements</span>
+                        <span>MAC Datapaths</span>
+                        <span>Fixed-Point Arithmetic</span>
+                        <span>FSM Control</span>
+                        <span>AI Accelerators</span>
+                        <span>Computer Architecture</span>
+                        <span>Digital VLSI</span>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- RESOURCES -->
+    <section class="detail-content detail-resources">
+        <div class="detail-grid">
+            <aside class="detail-sidebar">
+                <div><span>10</span><strong>RESOURCES</strong></div>
+            </aside>
+
+            <article class="detail-body">
+                <section>
+                    <h2>Project Evidence</h2>
+                    <p>
+                        Supporting project material can be connected here as it becomes
+                        available. The technical page is intentionally kept separate from
+                        the supporting documents so the engineering story remains the focus.
+                    </p>
+
+                    <div class="resource-list">
+                        <a href="#" class="resource-item">
+                            <span>PROJECT REPORT</span>
+                            <strong>Coming soon ↗</strong>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <span>PROJECT PRESENTATION</span>
+                            <strong>Coming soon ↗</strong>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <span>INTERNSHIP CERTIFICATE</span>
+                            <strong>Coming soon ↗</strong>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <span>GITHUB REPOSITORY</span>
+                            <strong>Coming soon ↗</strong>
+                        </a>
+                        <a href="#" class="resource-item">
+                            <span>DEMO / SIMULATION</span>
+                            <strong>Coming soon ↗</strong>
+                        </a>
+                    </div>
+                </section>
+            </article>
+        </div>
+    </section>
+
+    <!-- NAV -->
+    <section class="project-nav">
+        <a href="../index.html#projects">← All Projects</a>
+        <a href="tinyml-cnn-safety.html">Next Project →</a>
+    </section>
+
+</main>
+
+<footer>
+    <div class="footer-container">
+        <p>© 2026 Adhiraj Mandal</p>
+        <p>AI Hardware · VLSI · Computer Architecture · Efficient ML Systems</p>
+    </div>
+</footer>
+
+</body>
+</html>
